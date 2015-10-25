@@ -1,0 +1,172 @@
+<h1>
+<a class="anchor" name="anchor-0"></a>Objectives</h1>
+
+<ul>
+<li>Know the syntax to create an object literal</li>
+<li>Know the two ways to access object property values</li>
+<li>Know how to set a property value</li>
+<li>Know how to change a property value</li>
+</ul><h1>
+<a class="anchor" name="anchor-1"></a>Introduction to Objects</h1>
+
+<p>Think of objects as a collection of variables contained inside an object. They help keep a collection of data in one, accessible unit. Great for organizing data.</p>
+
+<h2>
+<a class="anchor" name="anchor-2"></a>CFU</h2>
+
+<pre><code>## Data
+
+var people = {
+  "joe" : {
+    firstName: "Joe",
+    lastName: "Jenkins",
+    preferences: {
+      meal: "meat",
+      favoriteGenres: ["jazz", "soul"],
+    },
+    sittingNextTo: "sue",
+    correspondence: [
+      {date: "11/4/2014", description: "sent invitation"},
+      {date: "12/2/2014", description: "replied yes"},
+    ],
+  },
+  "sue" : {
+    firstName : "Sue",
+    lastName : "Summers",
+    preferences : {
+      meal : "fish",
+      favoriteGenres : ["funk", "blues"],
+    },
+    sittingNextTo: "joe",
+    correspondence: [
+      {date: "11/7/2014", description: "sent invitation"},
+      {date: "12/8/2014", description: "replied yes + 1"},
+    ],
+  },
+  "fatima" : {
+    firstName: "Fatima",
+    lastName: "Tamir",
+    preferences: {
+      meal: "fish",
+      favoriteGenres: ["blues", "rock"],
+    },
+    sittingNextTo: "sue",
+    correspondence: [
+      {date: "10/6/2014", description: "sent invitation"},
+      {date: "11/2/2014", description: "replied yes"},
+    ],
+  }
+}
+</code></pre>
+
+<h1>
+<a class="anchor" name="anchor-3"></a>Exercise</h1>
+
+<p><a href="https://github.com/gSchool/intro-to-objects-js">Working With Objects and Arrays</a></p>
+
+<h1>
+<a class="anchor" name="anchor-4"></a>1:00 -More Objects</h1>
+
+<p>Create a resume.js file and inside do the following:</p>
+
+<p>Create a resume object: var resume = {};</p>
+
+<p>Add the following properties to the resume object:</p>
+
+<ul>
+<li>first name - value is a string</li>
+<li>last name - value is a string</li>
+<li>experience - value is an array of 2 objects with the following properties:
+
+<ul>
+<li>company (value is a string)</li>
+<li>start date (value is a string)</li>
+<li>end date (value is a string)</li>
+<li>references - value is an array of 3 objects with the following property an value:
+
+<ul>
+<li>name of reference = phone number (string)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>company addresses - value is an object with the company name as a property and an object as a value with the following properties:
+
+<ul>
+<li>address - (value is a string)</li>
+<li>city - (value is a string)</li>
+<li>state - (value is a string)</li>
+<li>zip - (value is a number)</li>
+</ul>
+</li>
+</ul><p>Write a function that prints your first and last name</p>
+
+<p>Write a function that prints a list of the companies you worked at, the address, city, state and zip of each company and your start and end date</p>
+
+<p>Write a function that prints the name and phone number of the references for each company</p>
+
+<p>Now, print them all out together so it looks like this: ( <code>node resume.js</code> in terminal)</p>
+
+<pre><code>Jeff Dean
+
+Experience:
+
+Galvanize
+345 Platte St
+Denver, Colorado 80209
+2013 - present
+References:
+Joe Schmoe: 773-995-5678
+Sheila Schook: 415-876-1405
+Lou Foley: 670-555-0900
+
+Pivotal
+12 Walnut St
+Boulder, Colorado 54609
+2011 - 2013
+References:
+etc ....
+</code></pre>
+
+<h1>
+<a class="anchor" name="anchor-5"></a>Stretch</h1>
+
+<p><a href="http://eloquentjavascript.net/04_data.html#h_nSTX34CM1M">http://eloquentjavascript.net/04_data.html#h_nSTX34CM1M</a></p>
+
+<p><a href="http://eloquentjavascript.net/04_data.html#h_IJBU+aXOIC">http://eloquentjavascript.net/04_data.html#h_IJBU+aXOIC</a></p>
+
+<h1>
+<a class="anchor" name="anchor-6"></a>Fun Stretch- Pixel Art Maker</h1>
+
+<p>Create your own Pixel Art Maker, which lets you click on a grid to "paint" pixel art.  The interface is completely up to you, but it could look something like this:</p>
+
+<p><img class="img-responsive" src="http://fc01.deviantart.net/fs71/f/2011/279/b/2/pixel_art_creator_by_kaikidan-d4c1amh.png" alt=""></p>
+
+<p>It boils down to this: A user selects a color and clicks on pixels to paint them with the selected color.</p>
+
+<p>Here's the order of steps that I would implement:</p>
+
+<ol>
+<li>Get 10 or so small divs on the screen</li>
+<li>Add an event listener to each so that when I click on a pixel it turns red</li>
+<li>Add a color palette div with 2 colors(red and purple)which allows the user to set the current "paintbrush" color instead of it always being set to red</li>
+<li>Add the rest of the standard rainbow colors to the color palette</li>
+<li>Add enough divs to fill up the entire screen</li>
+</ol><p><strong>Bonus Challenges:</strong> </p>
+
+<ul>
+<li>Add a color picker which allows the user to select any color. Look into the HTML5 color input.</li>
+<li>Add the ability to click and drag to paint multiple pixels at once</li>
+<li>Add a paintbucket tool which allows a user to drag a box across the screen and paint all pixels that fall inside that box</li>
+</ul><h3>
+<a class="anchor" name="anchor-7"></a>Resources</h3>
+
+<p><a href="http://www.w3schools.com/jsref/jsref_push.asp">http://www.w3schools.com/jsref/jsref_push.asp</a></p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for</a></p>
+
+<p><a href="http://www.w3schools.com/js/js_objects.asp">http://www.w3schools.com/js/js_objects.asp</a></p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects</a></p>
+</div>
+</div>

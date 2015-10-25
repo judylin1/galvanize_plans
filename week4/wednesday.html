@@ -1,0 +1,153 @@
+<h1>
+<a class="anchor" name="anchor-0"></a>So Much to Diagram!!!</h1>
+
+<p>What does this algorithm do?  On paper, draw the diagram of what the <code>result</code> object (and all related objects) look like.</p>
+
+<p>Hints:</p>
+
+<ul>
+<li>write your name on the paper</li>
+<li>your diagram should only have <em>1 variable</em>: <code>result</code>
+</li>
+<li>start in the upper left-hand corner of the page for the final result</li>
+<li>it may help to write out the variables <code>root</code>, <code>parent</code>, <code>child</code> for each iteration on a whiteboard (or spreadsheet, or separate sheet of paper)</li>
+</ul><p>Please do not run the code until you have turned in your diagram.</p>
+
+<pre><code>var linkedObjects = function (input) {
+  var root, parent, child;
+  for (var i = 0; i &lt; input.length; i++) {
+    child = {value: input[i], next: null};
+    if(parent) {
+      parent.next = child;
+    }
+    if(!root) {
+      root = child;
+    }
+    parent = child;
+  }
+  return root;
+};
+
+var result = linkedObjects([1,23,68]);
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-1"></a>Afternoon Workshops</h2>
+
+<ul>
+<li>1pm Transpose w/ Jaylyn</li>
+<li>1pm All three solutions w/ Steve using only higher order functions</li>
+<li>2pm Sum Columns w/ Sam</li>
+</ul><h1>
+<a class="anchor" name="anchor-2"></a>So Much To Code!!!</h1>
+
+<p>Keep slack open for announcements about student-led workshops.</p>
+
+<h2>
+<a class="anchor" name="anchor-3"></a>Previous assignments</h2>
+
+<p>Finish them <em>all</em>.</p>
+
+<ul>
+<li>
+<a href="https://github.com/gSchool/iteration-and-object-assessment">https://github.com/gSchool/iteration-and-object-assessment</a> (redo, redo, redo)</li>
+<li>
+<a href="https://github.com/gSchool/csv-to-markdown-js">https://github.com/gSchool/csv-to-markdown-js</a> (redo, redo, redo)</li>
+<li><a href="https://github.com/gSchool/node-async-text-parsing-0">https://github.com/gSchool/node-async-text-parsing-0</a></li>
+<li><a href="https://github.com/gSchool/js-node-log-file-parsing">https://github.com/gSchool/js-node-log-file-parsing</a></li>
+<li><a href="https://github.com/gSchool/objects-to-tables-js">https://github.com/gSchool/objects-to-tables-js</a></li>
+<li><a href="https://github.com/gSchool/js-iteration">https://github.com/gSchool/js-iteration</a></li>
+<li><a href="https://github.com/gSchool/song-that-doesnt-end-js">https://github.com/gSchool/song-that-doesnt-end-js</a></li>
+</ul><p>And until you are done, continue to work on <a href="https://github.com/gschool/javascript-challenges">https://github.com/gschool/javascript-challenges</a></p>
+
+<h2>
+<a class="anchor" name="anchor-4"></a>Ideas for solidifying testing</h2>
+
+<p>Remember how we split our earlier projects into 2 javascript files, one for DOM and one for logic?  </p>
+
+<ul>
+<li>Make a repo (and cd into it)</li>
+<li>Copy all of your logic files in there</li>
+<li>Run <code>jasmine init</code>
+</li>
+<li>Write your own specs</li>
+<li>Alter your logic files to have <code>module.exports</code>
+## Looking for a challenges?<br>
+</li>
+</ul><p>Go for these (they should take you weeks):</p>
+
+<ul>
+<li><a href="https://github.com/gSchool/async-reduce-with-constraints">https://github.com/gSchool/async-reduce-with-constraints</a></li>
+<li><a href="http://howto.galvanize.com/tutorials/2015-05-27-javascript-weather-app/">http://howto.galvanize.com/tutorials/2015-05-27-javascript-weather-app/</a></li>
+<li><a href="http://howto.galvanize.com/tutorials/2015-05-15-javascript-filtering/">http://howto.galvanize.com/tutorials/2015-05-15-javascript-filtering/</a></li>
+<li><a href="http://howto.galvanize.com/tutorials/2015-05-07-javascript-inbox/">http://howto.galvanize.com/tutorials/2015-05-07-javascript-inbox/</a></li>
+</ul><h2>
+<a class="anchor" name="anchor-5"></a>App ideas</h2>
+
+<ul>
+<li>Pick an 80s video game and reproduce it with Canvas</li>
+<li>Pick a card game / board game / puzzle game and build it</li>
+<li>Think of an app that would be useful to you or the class and build it</li>
+</ul><h2>
+<a class="anchor" name="anchor-6"></a>4pm - Moar GIT!</h2>
+
+<ul>
+<li>branching</li>
+<li>under the hood</li>
+</ul><p>Objectives:</p>
+
+<p>By the end of this lesson you should be able to:</p>
+
+<ul>
+<li>create a branch</li>
+<li>make commits on a branch</li>
+<li>move between different branches</li>
+<li>create a branch based on a previous commit</li>
+<li>describe roughly how </li>
+</ul><h4>
+<a class="anchor" name="anchor-7"></a>Git commands</h4>
+
+<table class="table table-bordered table-striped">
+<thead><tr>
+<th>Description</th>
+<th>Command</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Create a branch</td>
+<td><code>git checkout -b &lt;branchname&gt;</code></td>
+</tr>
+<tr>
+<td>Checkout a branch</td>
+<td><code>git checkout &lt;branchname&gt;</code></td>
+</tr>
+<tr>
+<td>Push a branch to Github</td>
+<td><code>git push origin &lt;branchname&gt;</code></td>
+</tr>
+<tr>
+<td>See the log of commits</td>
+<td><code>git log</code></td>
+</tr>
+<tr>
+<td>See the changes</td>
+<td><code>git diff</code></td>
+</tr>
+<tr>
+<td>Create a branch from a SHA</td>
+<td><code>git checkout -b &lt;branchname&gt; &lt;sha1&gt;</code></td>
+</tr>
+<tr>
+<td>View all branches</td>
+<td><code>git branch</code></td>
+</tr>
+</tbody>
+</table><h2>
+<a class="anchor" name="anchor-8"></a>Notes from the morning:</h2>
+
+<ul>
+<li>right-side evaluation</li>
+<li>object literals creating new objects in memory</li>
+</ul>
+</div>
+</div>

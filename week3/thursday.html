@@ -1,0 +1,195 @@
+<h2>
+<a class="anchor" name="anchor-0"></a>For Tomorrow</h2>
+
+<ul>
+<li><a href="https://www.youtube.com/results?search_query=node+red">https://www.youtube.com/results?search_query=node+red</a></li>
+<li><a href="http://www.ibm.com/madewithibm/watson/?S_PKG=-&amp;S_TACT=C34403YW&amp;iio=CCA&amp;jm=-&amp;cmp=C3440&amp;ct=C34403YW&amp;cr=google&amp;cm=k&amp;csr=Capabilities-Watson+Explorer_BR&amp;ccy=us&amp;ck=ibm%20watson%20cognitive&amp;cs=b&amp;cn=Cognitive_BR&amp;mkwid=s9fBAcdoc-dc_69570457696_432t5q28552">http://www.ibm.com/madewithibm/watson/?S_PKG=-&amp;S_TACT=C34403YW&amp;iio=CCA&amp;jm=-&amp;cmp=C3440&amp;ct=C34403YW&amp;cr=google&amp;cm=k&amp;csr=Capabilities-Watson+Explorer_BR&amp;ccy=us&amp;ck=ibm%20watson%20cognitive&amp;cs=b&amp;cn=Cognitive_BR&amp;mkwid=s9fBAcdoc-dc_69570457696_432t5q28552</a></li>
+</ul><h2>
+<a class="anchor" name="anchor-1"></a>Warmup</h2>
+
+<p>Sequence diagram a user going through your app.</p>
+
+<h2>
+<a class="anchor" name="anchor-2"></a>Create a Bluemix Account</h2>
+
+<p>It can take a while for the account to be approved / fully setup, so let's create that now.</p>
+
+<p><a href="https://console.ng.bluemix.net/">https://console.ng.bluemix.net/</a></p>
+
+<h2>
+<a class="anchor" name="anchor-3"></a>Testing</h2>
+
+<ul>
+<li>Why test?</li>
+<li>What does it look like?</li>
+<li>What should you test?</li>
+<li>Where do we start?</li>
+</ul><h3>
+<a class="anchor" name="anchor-4"></a>Building a library</h3>
+
+<p>Introducing Mimetic.</p>
+
+<h2>
+<a class="anchor" name="anchor-5"></a>Mimetic</h2>
+
+<h4>
+<a class="anchor" name="anchor-6"></a>Set up the repo</h4>
+
+<p>On Github, create a new repository named "mimetic"</p>
+
+<ul>
+<li>Choose "Initialize w/ README"</li>
+<li>Add <code>.gitignore</code> for <code>Node</code>
+</li>
+<li>Add <code>Apache License 2.0</code>
+</li>
+</ul><h4>
+<a class="anchor" name="anchor-7"></a>Clone it locally</h4>
+
+<ul>
+<li>clone your new repository (with the SSH url)</li>
+<li>cd into it</li>
+<li>open it in atom</li>
+</ul><h4>
+<a class="anchor" name="anchor-8"></a>Make it an NPM package</h4>
+
+<pre><code>npm init --yes
+</code></pre>
+
+<p>Type your name in when prompted and hit <code>enter</code>.</p>
+
+<h4>
+<a class="anchor" name="anchor-9"></a>Install and setup <code>jasmine</code> with:</h4>
+
+<pre><code>npm install -g jasmine
+jasmine init
+touch spec/querystring_spec.js
+</code></pre>
+
+<h4>
+<a class="anchor" name="anchor-10"></a>Add your first spec</h4>
+
+<p>Paste the following code into <code>spec/querystring_spec.js</code></p>
+
+<pre><code>var parseQueryString = require('../lib/querystring');
+
+describe('parseQueryString', function () {
+  it('turns a querystring into an object', function () {
+
+    // Part 1: setup your input
+    var input = '?artist=Miles&amp;year=1948';
+
+    // Part 2: call your function,
+    //    passing in the input
+    //    and capturing the result in a variable named `actual`
+    var actual = parseQueryString(input);
+
+    // Part 3a: define your expected output for the given input
+    var expected = { artist: 'Miles', year: '1948' }
+
+    // Part 3b: check to see if your code produced the results you expected
+    expect(actual).toEqual(expected);
+
+  });
+});
+</code></pre>
+
+<h4>
+<a class="anchor" name="anchor-11"></a>Run your specs</h4>
+
+<pre><code>jasmine
+</code></pre>
+
+<p>You should see:</p>
+
+<pre><code>module.js:338
+  throw err;
+        ^
+Error: Cannot find module '../lib/querystring'
+  at Function.Module._resolveFilename (module.js:336:15)
+  at Function.Module._load (module.js:278:25)
+  at Module.require (module.js:365:17)
+  at require (module.js:384:17)
+  at Object.&lt;anonymous&gt; (/private/tmp/foo/spec/querystring_spec.js:1:86)
+  at Module._compile (module.js:460:26)
+  at Object.Module._extensions..js (module.js:478:10)
+  at Module.load (module.js:355:32)
+  at Function.Module._load (module.js:310:12)
+  at Module.require (module.js:365:17)
+
+</code></pre>
+
+<h4>
+<a class="anchor" name="anchor-12"></a>Setup your lib file</h4>
+
+<p>Create a <code>lib</code> directory and start with a file named <code>querystring.js</code></p>
+
+<pre><code>mkdir lib
+touch lib/querystring.js
+</code></pre>
+
+<h4>
+<a class="anchor" name="anchor-13"></a>Run your specs</h4>
+
+<pre><code>jasmine
+</code></pre>
+
+<p>You should see:</p>
+
+<pre><code>Started
+F
+
+Failures:
+1) parseQueryString turns a querystring into an object
+  Message:
+    TypeError: undefined is not a function
+  Stack:
+    TypeError: undefined is not a function
+        at Object.&lt;anonymous&gt; (/private/tmp/foo/spec/querystring_spec.js:12:35)
+
+1 spec, 1 failure
+Finished in 0.007 seconds
+</code></pre>
+
+<h4>
+<a class="anchor" name="anchor-14"></a>Write the code</h4>
+
+<p>Get the code to pass by writing code in <code>lib/querystring.js</code></p>
+
+<pre><code class="js">module.exports = function (input) {
+  // write your fancy code here, return the result
+}
+</code></pre>
+
+<p>When you are done, and you run <code>jasmine</code>, you should see:</p>
+
+<pre><code>Started
+.
+
+
+1 spec, 0 failures
+Finished in 0.004 seconds
+</code></pre>
+
+<h4>
+<a class="anchor" name="anchor-15"></a>Git add / commit / push</h4>
+
+<h4>
+<a class="anchor" name="anchor-16"></a>Create a project in <a href="https://students.galvanize.com">https://students.galvanize.com</a>
+</h4>
+
+<p>Paste your Github URL only</p>
+
+<h2>
+<a class="anchor" name="anchor-17"></a>JavaScript Practice</h2>
+
+<p><a href="https://github.com/gSchool/javascript-challenges">https://github.com/gSchool/javascript-challenges</a></p>
+
+<ul>
+<li>How to setup?  Fork / Clone / <em>Branch</em>
+</li>
+<li>What are they?</li>
+<li>When should you do them?</li>
+</ul>
+</div>
+</div>

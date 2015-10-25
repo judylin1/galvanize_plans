@@ -1,0 +1,62 @@
+<h1>
+<a class="anchor" name="anchor-0"></a>Warmup</h1>
+
+<p>Re-do the sequence diagram from yesterday.  This time include:</p>
+
+<ul>
+<li>The same three headers (Browser, S3, Reddit/Omdb)</li>
+<li>The JS file requests</li>
+</ul><h1>
+<a class="anchor" name="anchor-1"></a>Watson!</h1>
+
+<p>Objective:  </p>
+
+<p>By the end of this lesson you should have a fully </p>
+
+<ul>
+<li>Describe what CORS stands for and what it is</li>
+<li>Describe what HTTP headers are and what they do</li>
+<li>Be able to use Postman to make API requests</li>
+</ul><h3>
+<a class="anchor" name="anchor-2"></a>Installation</h3>
+
+<ul>
+<li>Go to <a href="https://github.com/cloudfoundry/cli/releases">https://github.com/cloudfoundry/cli/releases</a>
+</li>
+<li>Download the Mac OS X 64 bit file</li>
+<li>Unzip and run the <code>.pkg</code>
+</li>
+</ul><p>Resources:</p>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest#setRequestHeader()">https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest#setRequestHeader()</a></li>
+</ul><h3>
+<a class="anchor" name="anchor-3"></a>Example code</h3>
+
+<p>XHR with <code>Content-Type</code> and <code>responseType</code>:</p>
+
+<pre><code>var xhr = new XMLHttpRequest;
+xhr.open('post', 'http://galvanize-node-red-demo.mybluemix.net/foo');
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.responseType = 'json';
+xhr.addEventListener('load', function () {
+  console.log(xhr.response);
+});
+xhr.send(JSON.stringify({hello: "nodered"}));
+</code></pre>
+
+<p>CORS configuration for NodeRed:</p>
+
+<pre><code>    httpNodeCors: {
+      origin: "*",
+      methods: "GET,PUT,POST,DELETE"
+    },
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-4"></a>1pm Guest Speaker</h2>
+
+<p>Chad Woolley of Pivotal Tracker</p>
+</div>
+</div>

@@ -1,0 +1,144 @@
+<h2>
+<a class="anchor" name="anchor-0"></a>This week</h2>
+
+<ul>
+<li>Paths</li>
+<li>Loop reviews (CSV)</li>
+<li>AJAX</li>
+<li>JSON / Working with data from APIs</li>
+<li>Parsing QueryStrings</li>
+<li>(possibly Local Storage)</li>
+<li>Markdown</li>
+</ul><h2>
+<a class="anchor" name="anchor-1"></a>HTTP Paths</h2>
+
+<p>Objectives:</p>
+
+<ul>
+<li>describe the difference between an absolute path, a relative path and a "rooted" or root-relative path</li>
+<li>name the parts of a URL (protocol, domain names, top-level domain, port, path)</li>
+</ul><p>Resources</p>
+
+<ul>
+<li><a href="http://www.netliteracy.org/community-connects/lesson-plans/spanish/image054/">http://www.netliteracy.org/community-connects/lesson-plans/spanish/image054/</a></li>
+<li><a href="http://scc.losrios.edu/%7Elibrary/tutorials/c/URLs/Domain_Names/">http://scc.losrios.edu/~library/tutorials/c/URLs/Domain_Names/</a></li>
+</ul><h2>
+<a class="anchor" name="anchor-2"></a>Paths Activity</h2>
+
+<p>Using terminal (<code>mkdir, touch</code>) create a new project directory called <code>paths</code> that has a structure that looks like this:</p>
+
+<pre><code>.
+├── css
+│   ├── app.css
+│   └── widgets
+│       ├── banner.css
+│       └── footer
+│           └── link.css
+├── index.html
+├── js
+│   ├── app.js
+│   └── people
+│       └── list.js
+└── products
+    ├── electronics
+    │   └── index.html
+    └── index.html
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-3"></a>Absolute Paths</h3>
+
+<p>Add valid HTML structure (doctype, head, body etc...) to each <code>index.html</code> file and deploy to S3.</p>
+
+<p>Using absolute paths (including <code>file://...</code> do the following:</p>
+
+<ul>
+<li>Link all 3 css files successfully to all three <code>index.html</code> files (add a few divs to each page and style those divs from the different css files to make sure that you have correctly linked each CSS file)</li>
+<li>Link the 2 javascript files to all three <code>index.html</code> documents - add some console.log statements to make sure you've done it correctly</li>
+</ul><p>Deploy to S3 again.  What happened?</p>
+
+<h3>
+<a class="anchor" name="anchor-4"></a>Relative Paths</h3>
+
+<p>In all <code>.html</code> files, convert all paths to relative paths.  Make sure it works locally, then deploy to S3 and make sure it works there.</p>
+
+<h3>
+<a class="anchor" name="anchor-5"></a>Relative Paths</h3>
+
+<p>Change all paths to be root-relative (starts with a <code>/</code>).  Note how it doesn't work locally.  Why?  What's the rule for a relative path?</p>
+
+<p>That is, what is it actually relative <em>to</em>?</p>
+
+<h3>
+<a class="anchor" name="anchor-6"></a>Running static sites with a web server</h3>
+
+<p>Install <code>http-server</code> - a simple HTTP server written in Node.</p>
+
+<pre><code>npm install http-server
+</code></pre>
+
+<p>Change all paths to be root-relative, open your site with <code>http-server</code> and then see the links work.</p>
+
+<h2>
+<a class="anchor" name="anchor-7"></a>Afternoon</h2>
+
+<ul>
+<li>CSV review workshop (burn down, go from scratch)</li>
+<li>CSV stretch workshop (only if your pair can demonstrate a working solution)</li>
+</ul><h2>
+<a class="anchor" name="anchor-8"></a>TBD - parsing querystrings</h2>
+
+<h3>
+<a class="anchor" name="anchor-9"></a>Getting URL information from JavaScript</h3>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/location?foo=bar&amp;baz=lars">https://developer.mozilla.org/en-US/docs/Web/API/Document/location?foo=bar&amp;baz=lars</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location">https://developer.mozilla.org/en-US/docs/Web/API/Location</a></li>
+</ul><h2>
+<a class="anchor" name="anchor-10"></a>Chrome Extensions</h2>
+
+<ul>
+<li><a href="https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en">https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en</a></li>
+<li><a href="https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop/related?hl=en">https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop/related?hl=en</a></li>
+</ul><p>(the Postman app will open in the chrome App launcher)</p>
+
+<h2>
+<a class="anchor" name="anchor-11"></a>cURL</h2>
+
+<ul>
+<li><a href="http://curl.haxx.se/docs/">http://curl.haxx.se/docs/</a></li>
+<li><code>man curl</code></li>
+</ul><p>The <code>less</code> editor.</p>
+
+<h2>
+<a class="anchor" name="anchor-12"></a>Sequence Diagrams</h2>
+
+<ul>
+<li><a href="https://www.websequencediagrams.com/">https://www.websequencediagrams.com/</a></li>
+</ul><h2>
+<a class="anchor" name="anchor-13"></a>JSON</h2>
+
+<pre><code>var req = new XMLHttpRequest();
+req.open("GET", "http://www.reddit.com/r/programming.json", true);
+req.addEventListener("load", function() {
+    console.log(req.response);
+});
+req.send(null);
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-14"></a>Tonight</h2>
+
+<ul>
+<li>Read up on JSONP <a href="http://en.wikipedia.org/wiki/JSONP">http://en.wikipedia.org/wiki/JSONP</a>
+
+<ul>
+<li>See an example here: <a href="http://www.reddit.com/r/programming.json?jsonp=yourFunctionHere">http://www.reddit.com/r/programming.json?jsonp=yourFunctionHere</a>
+</li>
+</ul>
+</li>
+<li>Read up on CORS - <a href="http://www.html5rocks.com/en/tutorials/cors/">http://www.html5rocks.com/en/tutorials/cors/</a>
+</li>
+</ul>
+</div>
+</div>

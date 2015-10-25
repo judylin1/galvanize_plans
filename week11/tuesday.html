@@ -1,0 +1,159 @@
+<h2>
+<a class="anchor" name="anchor-0"></a>Associations Assessment</h2>
+
+<p>When you are ready to put your associations knowledge to the test (on your schedule)</p>
+
+<p><a href="https://github.com/gSchool/express-mongo-associations-assessment">https://github.com/gSchool/express-mongo-associations-assessment</a></p>
+
+<h2>
+<a class="anchor" name="anchor-1"></a>Associations Unit Overview</h2>
+
+<ol>
+<li>Modeling Data: <a href="https://github.com/gSchool/modeling-data">https://github.com/gSchool/modeling-data</a>
+</li>
+<li>Nested Callbacks: <a href="https://github.com/gSchool/asynchronous-js-nested-callbacks">https://github.com/gSchool/asynchronous-js-nested-callbacks</a>
+</li>
+<li>Mongo Associations w/ References: <a href="https://github.com/gSchool/mongo-associations">https://github.com/gSchool/mongo-associations</a>
+</li>
+<li>Promises: <a href="https://github.com/gSchool/javascript-promises">https://github.com/gSchool/javascript-promises</a>
+</li>
+<li>Associated Objects <a href="https://github.com/gSchool/express-mongo-associated-objects">https://github.com/gSchool/express-mongo-associated-objects</a>
+</li>
+</ol><h2>
+<a class="anchor" name="anchor-2"></a>Workshops</h2>
+
+<p><a href="https://docs.google.com/spreadsheets/d/1ksUhkhzNkkCaFLUsA3x9m09SCKcFEkKAFczYKBG8nLM/edit#gid=189674823">https://docs.google.com/spreadsheets/d/1ksUhkhzNkkCaFLUsA3x9m09SCKcFEkKAFczYKBG8nLM/edit#gid=189674823</a></p>
+
+<ul>
+<li>9:30am Objects, Prototypes, Inheritance, <code>this</code>
+</li>
+<li>2:00pm Promises</li>
+</ul><h2>
+<a class="anchor" name="anchor-3"></a>4:30pm</h2>
+
+<ul>
+<li>OO-JavaScript Assessment Expectations</li>
+<li>Language</li>
+<li>Reading specs</li>
+</ul><h2>
+<a class="anchor" name="anchor-4"></a>OO Writeups</h2>
+
+<pre><code class="js">// An instance is an object whose prototype
+// points to the value of
+// the prototype property of a function
+
+var Person = function(name){
+    this.name = name
+}
+
+Person.prototype.shout = function(){
+    return "YOOOOOO"
+}
+
+
+var shyGuy = new Person
+shyGuy.shout = function(){return Person.prototype.shout().toLowerCase() }
+
+
+// 1. create a new object whose prototype is
+// the value of the prototype property of the constructor
+var sue = Object.create(Person.prototype)
+
+// 2. called the constructor, setting `this` to the newly created object
+Person.call(sue, "Sue")
+
+// 3. return the object
+sue instanceof Person
+</code></pre>
+
+<p>Assignment: go to <a href="http://www.objectplayground.com/">http://www.objectplayground.com/</a> and watch that video</p>
+
+<p><a href="https://drive.google.com/open?id=0B0skKBcLvHyCblRJVkY1bE9NM00">https://drive.google.com/open?id=0B0skKBcLvHyCblRJVkY1bE9NM00</a></p>
+
+<h2>
+<a class="anchor" name="anchor-5"></a>Promises Workshop</h2>
+
+<p>Here's the setup:</p>
+
+<pre><code class="js">var db = require('monk')('localhost/promises-example')
+var Post = db.get('posts')
+var Comment = db.get('comments')
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-6"></a>Language</h2>
+
+<pre><code>// defining a class
+// defining a constructor function
+// defining a class named X
+var ClassRoom = function () {
+
+}
+
+// defining the method `fill` on ClassRoom's prototype
+// defining an instance method
+ClassRoom.prototype.fill = function () {
+
+};
+
+// defining a function
+function a() {
+
+}
+
+// declare a variable classroom, and assign it to to null
+var classroom = null
+
+// setting a variable classroom equal to 12
+classroom = 12
+
+// create an instance of the ClassRoom class
+// instantiate a ClassRoom
+
+// "new up" a ClassRoom
+new ClassRoom
+
+// declare a new variable foo
+// and assign it an instance of ClassRoom
+
+// instantiate a classroom
+// and assign it to the variable foo
+
+// create a new ClassRoom named foo (50%)
+var foo = new ClassRoom
+
+function a() {
+
+}
+
+// add a parameter to the a function
+// add a parameter to "a"
+function a(int) {
+}
+
+// pass in an argument
+a()  // &lt;--- don't pass in an argument
+a(4)  // &lt;--- pass in an argument
+
+// create a for loop that runs for the length of array
+// loop over array
+// iterate through array
+// for each element in array...
+for (var i = 0; i &lt; array.length; i++) {
+  array[i]
+}
+
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-7"></a>Prep work</h2>
+
+<pre><code>var band = new Band
+member = new Member({first: 'Dave', last: 'Mathews'})
+band.addMember(member)
+var names = band.memberNames()
+
+names // ['Dave Mathews']
+</code></pre>
+</div>
+</div>

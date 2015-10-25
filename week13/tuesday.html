@@ -1,0 +1,29 @@
+<p><a href="https://docs.google.com/spreadsheets/d/1M__a67vNjmsi8jS3cJLEBcmX_pDxNs6itjX2WQObYMY/edit#gid=0">https://docs.google.com/spreadsheets/d/1M__a67vNjmsi8jS3cJLEBcmX_pDxNs6itjX2WQObYMY/edit#gid=0</a></p>
+
+<h2>
+<a class="anchor" name="anchor-0"></a>OO Pen Workshop</h2>
+
+<pre><code>var Pen = function (inkLevel) {
+  this.inkLevel = inkLevel
+}
+
+Pen.prototype.enough = function (chars) {
+  return this.inkLevel &gt;= chars.length
+};
+
+Pen.prototype.write = function (chars) {
+  if (!this.enough(chars)) {
+    throw "not enough ink left!"
+  }
+  this.inkLevel -= chars.length
+};
+
+var pen = new Pen(5)
+console.log("Can it write 5?", pen.enough("hello"));
+console.log("Can it write 11?", pen.enough("hello there"));
+pen.write("h")
+pen.write("ell")
+pen.write("o")
+</code></pre>
+</div>
+</div>

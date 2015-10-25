@@ -1,0 +1,105 @@
+<h2>
+<a class="anchor" name="anchor-0"></a>CRUD actions spreadsheet:</h2>
+
+<p><a href="https://docs.google.com/spreadsheets/d/1onxx0YvZ3L9y9lLg2OpITEwoSO8-vvPvjmBz-CtahwE/edit#gid=0">https://docs.google.com/spreadsheets/d/1onxx0YvZ3L9y9lLg2OpITEwoSO8-vvPvjmBz-CtahwE/edit#gid=0</a></p>
+
+<h1>
+<a class="anchor" name="anchor-1"></a>Warmup</h1>
+
+<h2>
+<a class="anchor" name="anchor-2"></a>Sequence Diagrams of Mongo / Express</h2>
+
+<p>Draw a sequence diagram of your app making a POST request to a create route that:</p>
+
+<ul>
+<li>inserts data</li>
+<li>redirects to the show route</li>
+<li>the show route pulls data from mongo and renders it with jade</li>
+</ul><p>Fork, clone and create a pull request here: <a href="https://github.com/gSchool/sequence-diagrams">https://github.com/gSchool/sequence-diagrams</a></p>
+
+<p>Add your solution to the <code>express-mongo-get-index/diagram.md</code> document. </p>
+
+<h2>
+<a class="anchor" name="anchor-3"></a>Morning</h2>
+
+<p>Finish up from yesterday, finish any previous homework.</p>
+
+<p>Guiding questions:</p>
+
+<ul>
+<li>How does the <code>&lt;form&gt;</code> element's action/method relate to Express routes?</li>
+<li>How do you pass data from an Express route to a Jade template?</li>
+<li>How do you pass data from an HTML form to an Express route?</li>
+<li>In Express routes, how do you access data from dynamic route segments (<code>/albums/:id</code>) in Express</li>
+<li>In Express routes, how do you access data posted from HTML forms?</li>
+<li>In Express routes, how do you access data from the query string?</li>
+<li>What are the 7 routes (verb/path combinations) needed to allow a user to CRUD from the browser?</li>
+<li>What do the following routes do?  What's their purpose?  Do they render or redirect?  What database actions do they take?
+
+<ul>
+<li>The index route</li>
+<li>The show route</li>
+<li>The new route</li>
+<li>The create route</li>
+<li>The edit route</li>
+<li>The update route</li>
+<li>The delete route</li>
+</ul>
+</li>
+<li>In the index / show route, you have to put <code>res.render</code> <em>inside</em> the callback to Monk's <code>find</code> method.  Why can't it be outside?</li>
+<li>What is Monk?</li>
+<li>What is Express?</li>
+<li>What is Node?</li>
+<li>What is Mongo?</li>
+<li>When the page first loads, how do you set the value of an input?  Of a textarea?  Of an HTML select?</li>
+<li>How do you make radio buttons / checkboxes checked by default when a page loads?</li>
+<li>What's the difference between server-side rendering and client-side rendering?</li>
+<li>What is the difference between rendering and redirecting?  Why would we redirect vs render?</li>
+</ul><h3>
+<a class="anchor" name="anchor-4"></a>Deploying to Heroku</h3>
+
+<ul>
+<li>Install the <a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a>
+</li>
+<li>
+<code>cd</code> into your Mail Merge project</li>
+<li>make sure you are on the master branch, and that your code is on master</li>
+<li>Run <code>heroku apps:create</code>
+</li>
+<li>Run <code>git push heroku master</code>
+</li>
+<li>When it's done, run <code>heroku open</code>
+</li>
+</ul><h3>
+<a class="anchor" name="anchor-5"></a>Deploying with Mongo</h3>
+
+<p>MongoLab is a free service for hobby Mongo databases.  <a href="https://devcenter.heroku.com/articles/mongolab">https://devcenter.heroku.com/articles/mongolab</a></p>
+
+<p>To deploy you albums app:</p>
+
+<ul>
+<li>cd into your albums project</li>
+<li>make sure you are on master, and your code is on master</li>
+<li>change your database connection line to</li>
+</ul><pre><code>  var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/album_class_demo');
+</code></pre>
+
+<ul>
+<li>git add and commit</li>
+<li><code>heroku apps:create</code></li>
+<li><code>git push heroku master</code></li>
+<li><code>heroku addons:create mongolab</code></li>
+</ul><h3>
+<a class="anchor" name="anchor-6"></a>CSS Homework</h3>
+
+<ul>
+<li><a href="http://unmatchedstyle.com/news/a-to-z-css-display.php">Watch and Read about CSS Display Property</a></li>
+<li>[Read] <a href="https://css-tricks.com/html-vs-body-in-css/">https://css-tricks.com/html-vs-body-in-css/</a>
+</li>
+<li><a href="https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/">The medium explanation about positioning</a></li>
+<li><a href="http://www.barelyfitz.com/screencast/html-training/css/positioning/">10 steps about how to position elements</a></li>
+<li>Create a new repo (or codepen) to play with CSS positioning. List 3 questions you have about that property.</li>
+<li>Create a new repo  (or codepen) to play with CSS Display. List 3 questions you have about that property.</li>
+</ul>
+</div>
+</div>

@@ -1,0 +1,392 @@
+<h2>
+<a class="anchor" name="anchor-0"></a>Morning</h2>
+
+<h4>
+<a class="anchor" name="anchor-1"></a>What is Object Oriented Programming?</h4>
+
+<h3>
+<a class="anchor" name="anchor-2"></a>Introduction to Object Oriented Programming in JavaScript</h3>
+
+<h3>
+<a class="anchor" name="anchor-3"></a>Javascript Constructors</h3>
+
+<p>Before we examine constructors, let's review. There are a few different ways to create objects.</p>
+
+<p><strong>Object Literal Notation</strong></p>
+
+<pre><code>// Object Literal notation uses `var` and `:`
+var instructor = {
+  name: "Elie",
+  age: 27
+}
+
+// Or (notice the use of the keyword "new")
+var instructor = new Object()
+
+instructor.name = "Elie"
+instructor.age = 27
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-4"></a>Intro to Classes and Constructors</h3>
+
+<p>Imagine you're an architect and you're tasked with designing a blueprint for a house (which will be used to build 25 similar looking houses). If we assume that every house has a number of square feet, bathrooms and bedrooms we can model this with a few objects.</p>
+
+<pre><code>var house1 = {
+  sqFeet: 3000,
+  bathrooms: 3
+  bedrooms: 2
+}
+var house2 = {
+  sqFeet: 4000,
+  bathrooms: 3.5
+  bedrooms: 2
+}
+var house3 = {
+  sqFeet: 1000,
+  bathrooms: 2
+  bedrooms: 1
+}
+var house4 = {
+  sqFeet: 13000,
+  bathrooms: 3.5
+  bedrooms: 7
+}
+</code></pre>
+
+<p>Unfortunately, this is not very efficient. We've created 4 houses and already it's taken almost 20 lines of code. Fortunately we can create a class as our "blueprint" and then create objects based off of that. To create a class in JavaScript, we can use a constructor function.</p>
+
+<p><strong>Constructor Notation</strong></p>
+
+<p>We can use a constructor function to create multiple objects that share the same properties.</p>
+
+<p>Using our previous example we create a constructor function like this:</p>
+
+<pre><code>function House(sqFeet, bathrooms, bedrooms) {
+  this.sqFeet = sqFeet;
+  this.bathrooms = bathrooms;
+  this.bedrooms = bedrooms;
+}
+</code></pre>
+
+<p>Notice our use of the keyword <code>this</code>. Since we don't know what the value for the parameters will be, we use <code>this</code> as a placeholder and when we call this function, we add in our values. To create an object using a constructor function, we use the <code>new</code> keyword. Here is an example of how we would create our four houses using a constructor function and the <code>new</code> keyword:</p>
+
+<pre><code>var house1 = new House(3000, 3, 2)
+var house2 = new House(4000, 3.5, 2)
+var house3 = new House(1000, 2, 1)
+var house4 = new House(13000, 3.5, 7)
+</code></pre>
+
+<p>Let's look at another example and a different way to write a constructor function.</p>
+
+<pre><code>var Person = function(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.fullName = function () {
+    return ("Hello" + firstName + " " + lastName)
+  }
+}
+
+// This can also be written as:
+
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.fullName = function () {
+    return ("Hello" + firstName + " " + lastName)
+  }
+}
+</code></pre>
+
+<p>What's the difference between these two? In short, The difference is that <code>var Person = function(){}</code> is defined at run-time (which means that if we were to call it before defining it we would get an error), whereas <code>function Person(){}</code> is defined at parse-time (which means that if we were to call it before defining it we would <strong>not</strong> get an error). For example:</p>
+
+<p>You can read more about the difference <a href="http://stackoverflow.com/questions/336859/var-functionname-function-vs-function-functionname">here</a></p>
+
+<p>Let's now take a look</p>
+
+<pre><code>var elie = new Person("Elie", "Schoppik");
+
+console.log(elie.firstName);
+console.log(elie.lastName);
+console.log(elie.fullName());
+</code></pre>
+
+<p>Using the <code>new</code> keyword, Javascript does a few things.</p>
+
+<ul>
+<li>Creates a new object</li>
+<li>Sets the <code>constructor</code> property to the object Person
+You can use x.constructor to get a direct reference to the object, but it's an anonymous function so there's no way of getting its name.</li>
+</ul><h3>
+<a class="anchor" name="anchor-5"></a>Pitfalls</h3>
+
+<ul>
+<li><p>When using the constructor, don't try to call a constructor without the <code>new</code> keyword.</p></li>
+<li><p>Always make sure the keyword <code>this</code> is on the left hand side:</p></li>
+<li><p><code>this.foo = foo</code></p></li>
+<li><p><code>return</code> statements in a constructor does not do anything</p></li>
+</ul><h4>
+<a class="anchor" name="anchor-6"></a>Testing our Constructors:</h4>
+
+<p>When using jasmine to test our constructors include this code to create a new instance of our class in your spec/personSpec.js file:</p>
+
+<pre><code>var elie;
+
+// create a new Person each time
+ beforeEach(function(){
+    elie = new Person('Elie', 'Schoppik');
+  });
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-7"></a>Prototypes</h3>
+
+<p>One of the more complex concepts in JavaScript to wrap your head around is the
+idea of a Prototype. You can think of a Prototype as the building block for your
+object (and remember that everything in JavaScript is an object). For any object
+you create, you can attach methods and properties to it's prototype. So in our
+constructor functions, we can attach methods and properties to the prototype so
+that every object we create from it will have these properties and methods!</p>
+
+<p>But wait a second....how is the prototype different than just adding a method to the constructor function? Let's examine these two pieces of code</p>
+
+<ul>
+<li>Attaching a method to the constructor function:</li>
+</ul><pre><code>function Person(name){
+    this.name = name
+    this.sayHi = function(){
+        alert("Hi " + this.name)
+    }
+}
+
+var elie = new Person("Elie")
+elie.sayHi()
+</code></pre>
+
+<ul>
+<li>Attaching a method to the prototype:</li>
+</ul><pre><code>function Person(name){
+    this.name = name
+}
+
+Person.prototype.sayHi = function() {
+    alert("Hi " + this.name)
+}
+
+var elie = new Person("Elie")
+elie.sayHi()
+</code></pre>
+
+<p>So...these both work, but how are they different, and which one is better? The answer is the second one, here's why:</p>
+
+<ul>
+<li>When we attach methods to the constructor function, these methods are written each time a new instance of the object is created, which is a waste of memory. By attaching the method to the prototype, we only have to declare it once. The example version saves memory because there is only one instance of the function instead of a separate function for each object.</li>
+</ul><p>Let's now take this a step further - how is it that an Array has the methods (length, map, forEach and so many more)? How does every object have a toString() or hasOwnProperty method? The answer is, that these methods are part of that object's Prototype. Even further, Objects can inherit properties and methods from other objects (that's how the Boolean and Number object have the toString() method.) - the answer to this question will be explored more tomorrow when we discuss inheritance.</p>
+
+<h2>
+<a class="anchor" name="anchor-8"></a>Final Person+Jasmine Code</h2>
+
+<p><code>person.js</code></p>
+
+<pre><code>function Person(name,age,favColor){
+  this.name = name;
+  this.age = age;
+  this.favColor = favColor;
+
+}
+
+// refers to our constructor function
+module.exports = Person;
+</code></pre>
+
+<p><code>personSpec.js</code></p>
+
+<pre><code>// This var can be called anything!
+var Person = require("../person");
+var elie;
+
+describe("Person",function(){
+  beforeEach(function(){
+    elie = new Person("Elie",27, "Purple");
+  });
+
+  describe("Initialization", function(){
+    it("has a name assigned", function(){
+      expect(elie.name).toEqual("Elie");
+    });
+    it("has an age assigned", function(){
+      expect(elie.age).toEqual(27);
+    });
+    it("has a favColor assigned", function(){
+      expect(elie.favColor).toEqual("Purple");
+    });
+  });
+});
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-9"></a>Lab</h3>
+
+<p>Exercise 1: <a href="https://github.com/gSchool/js_oop_exercise">https://github.com/gSchool/js_oop_exercise</a>
+Exercise 2: <a href="https://github.com/gSchool/js-methods-this-constructors">https://github.com/gSchool/js-methods-this-constructors</a></p>
+
+<h2>
+<a class="anchor" name="anchor-10"></a>Afternoon</h2>
+
+<h3>
+<a class="anchor" name="anchor-11"></a>A Closer look at <code>this</code>
+</h3>
+
+<p><a href="https://github.com/gSchool/what-is-this">What Is This Exercise</a></p>
+
+<h3>
+<a class="anchor" name="anchor-12"></a>Note</h3>
+
+<p>Your first priority today is the two exercises. </p>
+
+<p>After that, if you and your pair did not finish Tic Tac Toe on Friday, you should complete it on your own. Every student should have their own copy of the Tic Tac Toe exercise from Friday. At some point today, walk an instructor through your game (even if it is not finished) and explain how things work. If it is not finished, you goal is to finish the game on your own today.</p>
+
+<h3>
+<a class="anchor" name="anchor-13"></a>Main Takeaways</h3>
+
+<ul>
+<li>The <code>this</code> keyword has nothing to do with the function itself.  It's determined by how the function is called.</li>
+<li>It can be dynamic, based on how the function is called</li>
+<li>You can change the <code>this</code> context using <code>call()</code>, <code>bind()</code>, and <code>apply()</code>
+</li>
+</ul><h3>
+<a class="anchor" name="anchor-14"></a>Global Context</h3>
+
+<pre><code>console.log(this)
+</code></pre>
+
+<ol>
+<li>Function Context</li>
+</ol><pre><code>function hello(){
+    console.log(this)
+}
+hello();
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-15"></a>As An Object Method</h3>
+
+<pre><code>var dog = {
+ name: "Rusty",
+ bark: function() {
+   console.log(this.name + " says woof!")
+ }
+}
+
+dog.bark()
+</code></pre>
+
+<p>Take the following example:</p>
+
+<pre><code>    var person = {
+    firstName: "Harry",
+    lastName: "Potter",
+    fullName: function () {
+        console.log(this.firstName + " " + this.lastName);
+    }
+}
+</code></pre>
+
+<p>Why don't we just write this instead:</p>
+
+<pre><code>    var person = {
+    firstName: "Harry",
+    lastName: "Potter",
+    fullName: function () {
+        console.log(person.firstName + " " + person.lastName);
+    }
+}
+</code></pre>
+
+<p>Is we use <code>person.firstName</code>, our code becomes ambigous.  There could be another global variable named <code>person</code>.</p>
+
+<p>Note that the behavior of this is not affected by where the function was defined.  We can define a function separately and then attach it to the <code>dog</code> object later</p>
+
+<pre><code>var dog = {name: "Rusty"}
+
+function howl(){
+ console.log(this.name + " says awwooo")
+}
+
+dog.howl = howl;
+
+dog.howl();
+</code></pre>
+
+<p>What about the following code?  What's the value of <code>this</code>?</p>
+
+<pre><code>function rollOver(){
+ console.log(this.name + " rolls over!")
+}
+
+function backFlip(){
+ console.log(this.name + " does a backflip!")
+}
+
+dog.tricks = {rollOver: rollOver, backFlip: backFlip};
+
+dog.tricks.rollOver()
+</code></pre>
+
+<p>This demonstrates that the <code>this</code> binding is only affected by the most immediate member reference.  Basically, <code>this</code> is going to be the "innnermost" object, in this case it's <code>tricks</code> rather than <code>dog</code>.</p>
+
+<h3>
+<a class="anchor" name="anchor-16"></a>As A Constructor</h3>
+
+<p>Inside of a constructor function, <code>this</code> is bound to the new object being constructed.</p>
+
+<pre><code>function Dragon(name){
+    this.name = name,
+}
+
+var d = new Dragon("Drogon");
+var s = new Dragon("Saphira");
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-17"></a>Bind</h3>
+
+<p>Try this experiement:</p>
+
+<ol>
+<li>Add a button element to an html file</li>
+<li>Define an array of students, each an object with a name and city</li>
+<li>Make the students array a property on a <code>cohort</code> object</li>
+<li>Write a function called <code>pickStudent</code> to select a random student's name from the students array</li>
+<li>Make the <code>pickStudent</code> function a method on the <code>cohort</code> object</li>
+<li>Add an event listener so that when you click on the button, it calls <code>pickStudent</code>.  No anonymous functions allowed!</li>
+<li>Describe the problem you're encountering!</li>
+</ol><h2>
+<a class="anchor" name="anchor-18"></a>Answer the following questions:</h2>
+
+<ul>
+<li>What is <code>call()</code>?  How does it work?  Write an example usage(don't just copy one, write your own!)</li>
+<li>What is <code>apply()</code>?  How does it work?  Write an example usage(don't just copy one, write your own!) </li>
+<li>What's the difference between <code>call()</code> and <code>apply()</code>?</li>
+<li>Given the following code:</li>
+</ul><pre><code>var cohort = {students: [
+    {name: "Amanda", city: "Cocoa Beach"},
+    {name: "Aanal", city: "Denver"},
+    {name: "Judy", city: "Dallas"},
+    {name: "Dylan", city: "Colorado Springs"}
+  ],
+
+  pickStudent: function(){
+     console.log("INSIDE OF PICK STUDENT!")console.log(this);
+     var num = Math.floor(Math.random() * this.students.length);console.log(this.students[num].name)
+  }}
+
+var button = document.querySelector("button");
+button.addEventListener("click", cohort.pickStudent.bind(cohort));
+</code></pre>
+
+<ul>
+<li>Why don't I have to use <code>bind()</code> if I instead wrap the <code>cohort.pickStudent</code> call inside of an anonymous function?</li>
+</ul>
+</div>
+</div>

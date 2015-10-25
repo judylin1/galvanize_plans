@@ -1,0 +1,167 @@
+<h2>
+<a class="anchor" name="anchor-0"></a>Project Managers</h2>
+
+<ul>
+<li>Jaylyn Stoesz manages Trevor Scheuermann</li>
+<li>Anna Casper manages Ashley Pelan</li>
+<li>Micah Bell manages Claire Nessler</li>
+<li>Amanda Carlton manages Jared Cross</li>
+<li>Samantha Genduso manages Derek Ball</li>
+<li>Trevor Scheuermann manages Micah Bell</li>
+<li>Roberto Ortega manages Szilvia Deahl</li>
+<li>Judy Lin manages Mattias Ljung</li>
+<li>Akhil Sankar manages Barry Bankhead</li>
+<li>Dylan Zincone manages Roberto Ortega</li>
+<li>Szilvia Deahl manages Lucas Weber</li>
+<li>Zack Claar manages Samantha Genduso</li>
+<li>Steven Abrams manages Akhil Sankar</li>
+<li>Ashley Pelan manages Vishwam Sankar</li>
+<li>Derek Ball manages Jacob Brenneman</li>
+<li>Andrew Cer manages Derek Vance</li>
+<li>Barry Bankhead manages Zack Claar</li>
+<li>Jacob Brenneman manages Dylan Zincone</li>
+<li>Mattias Ljung manages Nick Mattei</li>
+<li>Aanal Patel manages Steven Abrams</li>
+<li>Lucas Weber manages Jaylyn Stoesz</li>
+<li>Nick Mattei manages Anna Casper</li>
+<li>Jared Cross manages Judy Lin</li>
+<li>Vishwam Sankar manages Amanda Carlton</li>
+<li>Derek Vance manages Aanal Patel</li>
+<li>Claire Nessler manages Andrew Cer</li>
+</ul><h2>
+<a class="anchor" name="anchor-1"></a>Interacting with APIs in Node</h2>
+
+<p>Objectives:</p>
+
+<p>By the end of this you should be able to:</p>
+
+<ul>
+<li>Sequence diagram an express / API integration flow</li>
+<li>Get data from a site that uses tokens in the URL using unirest</li>
+<li>Get data from a site that uses headers in the URL using unirest</li>
+</ul><p>Guiding questions:</p>
+
+<ul>
+<li>Why can't you use XMLHttpRequest in node?</li>
+</ul><h3>
+<a class="anchor" name="anchor-2"></a>Process</h3>
+
+<ul>
+<li>Register for an API key</li>
+<li>Go to the docs
+
+<ul>
+<li>Figure out what to do</li>
+<li>Use the online console / playground if available</li>
+</ul>
+</li>
+<li>Install unirest (be sure to save it to package.json)</li>
+<li>
+<code>require</code> unirest and make the api call</li>
+<li>Ensure that your key is not in Git
+
+<ul>
+<li>install the <code>dotenv</code> npm package (be sure to save it to package.json</li>
+<li>create a <code>.env</code> file</li>
+<li>add <code>.env</code> to your gitignore</li>
+<li>require / load <code>dotenv</code> (probably in <code>app.js</code>)</li>
+<li>add environment variables / values in <code>.env</code>
+</li>
+<li>replace any hard-coded keys with <code>process.env</code>
+</li>
+</ul>
+</li>
+<li>Parse the data as needed and display / add to your database</li>
+</ul><h3>
+<a class="anchor" name="anchor-3"></a>Unirest</h3>
+
+<ul>
+<li><a href="http://unirest.io/nodejs.html">http://unirest.io/nodejs.html</a></li>
+</ul><h3>
+<a class="anchor" name="anchor-4"></a>Sending API Tokens in QueryStrings</h3>
+
+<ul>
+<li><a href="http://developer.nytimes.com/io-docs">http://developer.nytimes.com/io-docs</a></li>
+<li><a href="http://developer.nytimes.com/apps/mykeys">http://developer.nytimes.com/apps/mykeys</a></li>
+</ul><pre><code>unirest.get('http://api.nytimes.com/svc/books/v3/lists/hardcover-fiction.json?api-key=5551212')
+  .end(function (response) {
+    console.log(response.body);
+  })
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-5"></a>Sending API Tokens in Headers</h3>
+
+<ul>
+<li><a href="https://www.pivotaltracker.com/help/api#top">https://www.pivotaltracker.com/help/api#top</a></li>
+<li><a href="https://www.pivotaltracker.com/profile">https://www.pivotaltracker.com/profile</a></li>
+</ul><pre><code>unirest.get('https://www.pivotaltracker.com/services/v5/projects')
+  .header('X-TrackerToken', '5551212')
+  .end(function (response) {
+    console.log(response.body);
+  })
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-6"></a>Exercise</h2>
+
+<p><strong>Show all stories for your project in tracker</strong></p>
+
+<ol>
+<li>Create an express app locally</li>
+<li>Follow the API integration process above, but using Pivotal Tracker docs from above</li>
+<li>When users go to the index page on your app, they should see all the stories from your project</li>
+</ol><p><strong>Stretch: Create a story from your app</strong></p>
+
+<ol>
+<li>Users see a form on the page</li>
+<li>Users can create a tracker story from your app
+
+<ul>
+<li>the forms posts to your express app</li>
+<li>your express route sends a POST to tracker</li>
+<li>verify that it works by going to your tracker project!</li>
+</ul>
+</li>
+</ol><h2>
+<a class="anchor" name="anchor-7"></a>1:00pm - Projects</h2>
+
+<p>Clone this <a href="https://github.com/gSchool/g10-project-week-proposals/blob/master/README.md">repo</a>, update the readme and submit a pull request.</p>
+
+<ul>
+<li>Objectives
+
+<ul>
+<li>Create your first portfolio app</li>
+<li>Move up a level on Bloom's taxonomy (to the "analyze", "evaluate" and "create" stages)</li>
+<li>Increase your independence.  Struggle more</li>
+</ul>
+</li>
+<li>Project Manager Assignments</li>
+<li>Demo: Random project manager generator</li>
+</ul><p>Initial IPM:</p>
+
+<ul>
+<li>Add your project manager as a member</li>
+<li>All stories are in the backlog</li>
+<li>All stories are written with the user in mind (are verifiable by non-programmers)
+
+<ul>
+<li>Non-user-facing stories can be stored as Chores</li>
+</ul>
+</li>
+<li>Stories are prioritized top-to-bottom such that each story builds on the next</li>
+<li>Stories are small</li>
+</ul><p>Next week:</p>
+
+<ul>
+<li>Whenever a story is delivered, meet in-person with the project manager</li>
+</ul><h2>
+<a class="anchor" name="anchor-8"></a>4:30 Wrap up and Review</h2>
+
+<ul>
+<li>Presentation format for next Monday</li>
+<li>Expectations for project week / reminder about Thursday / Friday off</li>
+</ul><p><a href="https://docs.google.com/a/galvanize.com/forms/d/1HDt6IUG_4rebjudFPSJRaj0LFtCm805pFAAsaIPMNh4/viewform">Weekly Feedback Form</a></p>
+</div>
+</div>

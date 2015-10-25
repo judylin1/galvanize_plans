@@ -1,0 +1,45 @@
+<h1>
+<a class="anchor" name="anchor-0"></a>OAuth and Passport JS</h1>
+
+<h2>
+<a class="anchor" name="anchor-1"></a>OAuth</h2>
+
+<p>Objectives:</p>
+
+<p>By the end of today you should be able to:</p>
+
+<ul>
+<li>Describe and explain OAuth and it's role in web authentication</li>
+<li>Install and configure Passport (npm install, ensuring it's in package.json, configuring middleware, adding .env etc...)</li>
+<li>Install and configure a Passport strategy (for today, it'll be LinkedIn)</li>
+<li>Take advantage of being logged in to LinkedIn to make user-specific API calls to LinkedIn</li>
+</ul><h2>
+<a class="anchor" name="anchor-2"></a>Discussion</h2>
+
+<p>We'll just be covering OAuth 2 for the Web.  There are lots of other OAuth-related things, such as:</p>
+
+<ul>
+<li>OAuth 1.x (way more complex and difficult to work with)</li>
+<li>OAuth for mobile devices and scripts</li>
+<li>Lots of detailed info here as well: <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2">https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2</a>
+</li>
+</ul><p>The basic OAuth2 web flow is:</p>
+
+<p><img class="img-responsive" src="http://41.media.tumblr.com/dc0ed4febc896d5d0589fc2940e52a42/tumblr_mp08klMuDm1qax653o1_1280.jpg" alt=""></p>
+
+<p>Guiding questions:</p>
+
+<ul>
+<li>How does Google / Facebook / LinkedIn etc... communicate with your <em>local</em> web app during development?  Isn't that private (aka not published on the internet)??</li>
+<li>What part of your existing authentication / authorization flows does this replace?</li>
+<li>Why would you want to authenticate with Google / Facebook instead of storing the emails / passwords yourself?</li>
+</ul><h2>
+<a class="anchor" name="anchor-3"></a>Exercise</h2>
+
+<p>Follow instructions on <a href="https://github.com/gSchool/express-passport-linkedin">https://github.com/gSchool/express-passport-linkedin</a></p>
+
+<p>You will create a new, public repo and push all of your changes there.</p>
+
+<p>When you are done, find an instructor and demo your working application.</p>
+</div>
+</div>

@@ -1,0 +1,149 @@
+<h2>
+<a class="anchor" name="anchor-0"></a>Cookies!!</h2>
+
+<p>By the end of this lesson you should be able to:</p>
+
+<ul>
+<li>Explain cookies (how they are sent from servers to browsers, and from browsers to servers)</li>
+<li>View and delete cookies in Chrome developer tools</li>
+<li>Set and read cookies in Express</li>
+<li>Explain what incognito mode / profiles are and use them to test the same app with different cookies</li>
+</ul><h3>
+<a class="anchor" name="anchor-1"></a>Demo</h3>
+
+<p>Watch cookies in action</p>
+
+<h3>
+<a class="anchor" name="anchor-2"></a>Research</h3>
+
+<p>Research these questions (and we'll call on you randomly for answers):</p>
+
+<ul>
+<li>What tab do you go to in order to see / delete cookies?</li>
+<li>Are all cookies sent to all websites?</li>
+<li>Do all cookies stay around when you close your browser?</li>
+<li>Do cookies stay on your machine forever?</li>
+<li>How are cookies transmitted to the server?</li>
+<li>How are cookies transmitted to the browser?</li>
+<li>How much data can you store in a cookie?</li>
+</ul><p>Resources</p>
+
+<ul>
+<li><a href="https://www.npmjs.com/package/cookie">https://www.npmjs.com/package/cookie</a></li>
+<li><a href="http://www.nczonline.net/blog/2009/05/05/http-cookies-explained/">http://www.nczonline.net/blog/2009/05/05/http-cookies-explained/</a></li>
+<li><a href="https://chrome.google.com/webstore/detail/cookie-inspector/jgbbilmfbammlbbhmmgaagdkbkepnijn?hl=en">Cookie Inspector Chrome</a></li>
+</ul><h3>
+<a class="anchor" name="anchor-3"></a>Reading cookies</h3>
+
+<pre><code>req.cookies.whateverName
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-4"></a>Setting cookies</h3>
+
+<pre><code>res.cookie('whateverName', whateverValue);
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-5"></a>Example Hit Counter</h3>
+
+<pre><code>router.get('/', function(req, res, next) {
+  var visits = parseInt(req.cookies.visits, 10) || 1
+  visits++
+  res.cookie('visits', visits);
+  res.render('index', { title: 'Express', visits: visits });
+});
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-6"></a>Exercise</h2>
+
+<p>Create a super basic fake login with cookies.</p>
+
+<ol>
+<li>Create a new express app</li>
+<li>On the index route, create a simple form that posts to a route with the path <code>/fake-login</code>
+</li>
+<li>Add a text field in the form with the name <code>user_name</code> and add a submit button</li>
+<li>When the user posts to <code>/fake-login</code>, set a cookie named <code>currentUser</code> and set the value to whatever the user entered</li>
+<li>Add code to make the message "Hello [User]" appear</li>
+<li>Add a logout link that deletes that cookie</li>
+<li>Go to an incognito tab or separate profile and test again</li>
+</ol><h2>
+<a class="anchor" name="anchor-7"></a>How would you?</h2>
+
+<ul>
+<li>Allow users to choose their site's background color using cookies?</li>
+<li>Figure out how long a user spent on the previous page?</li>
+</ul><h2>
+<a class="anchor" name="anchor-8"></a>Patterns</h2>
+
+<ul>
+<li>Express parses the route and creates an object representing the path params</li>
+<li>Express parses the body and creates an object representing the form params</li>
+<li>Express parses the querystring and creates an object representing the query params</li>
+</ul><p>What does Express do with the cookie header?  It creates an object.</p>
+
+<h2>
+<a class="anchor" name="anchor-9"></a>Check for Understanding</h2>
+
+<ul>
+<li><a href="https://young-island-9346.herokuapp.com/">https://young-island-9346.herokuapp.com/</a></li>
+<li>Writeup</li>
+</ul><h2>
+<a class="anchor" name="anchor-10"></a>1pm - Project Ideas</h2>
+
+<h3>
+<a class="anchor" name="anchor-11"></a>Past Project Examples</h3>
+
+<ul>
+<li>
+<a href="https://katapult-bbbs.herokuapp.com/">https://katapult-bbbs.herokuapp.com/</a>  Katapult is a tool created for Big Brothers Big Sisters of Colorado to present local events to Bigs (volunteers) and LIttles (kids registered in the program).</li>
+<li>
+<a href="http://andrewjamesdesign.com/golden.html">http://andrewjamesdesign.com/golden.html</a>  Golden is a flash card style interview prep site. Built for full stack developers, this site will challenge and keep developers up to speed on concepts and terminology.</li>
+<li>
+<a href="https://paramotiv.herokuapp.com">https://paramotiv.herokuapp.com</a>   Create a garage of vehicles, instantly access upcoming maintenance, recalls, nearest dealer and trade-in values. Single page application built using Ruby on Rails and Javascript/jQuery, with data pulled from the Edmunds.com API.</li>
+<li>
+<a href="http://insta-list.herokuapp.com/">http://insta-list.herokuapp.com/</a>  List It allows you to quickly and efficiently create and delegate grocery lists. Create a grocery list manually or by searching from thousands of recipes. </li>
+<li>
+<a href="https://grafapp.herokuapp.com/">https://grafapp.herokuapp.com/</a>    A responsive template creator for stories or blog posts</li>
+<li>
+<a href="https://un-bored.herokuapp.com">https://un-bored.herokuapp.com</a>    Metaprogramming exercise on the back-end that dynamically created forms and initialized unlimited variations of object models in a quickly scalable environment. Front-end used the Google Maps API to showcase activities around town such as bars, breweries, ice cream shops, and more.<br>
+</li>
+<li><p><a href="https://travvy.herokuapp.com/">https://travvy.herokuapp.com/</a> Built with the savvy traveler in mind (hence Travvy). Scraped data from AirBNB using the Mechanize gem to compare against hotel rates pulled via the Expedia Affiliate Network API while noting locations of each by using an integration with Google Maps. The application was built with Ruby on Rails, HTML, CSS, Sass, JavaScript, and jQuery.</p></li>
+<li><p><a href="https://mondaynightsupperclub.herokuapp.com/">https://mondaynightsupperclub.herokuapp.com/</a>  Monday Night Supper Club is a tool for a private dinner club. The site allows members to see the monthly schedules, load past recipes, and access all member information. With one-click members are able to have driving directions from their current location to another members house, and make phone calls. This application was built with Ruby on Rails, HTML, CSS and the Instagram API.
+powderpioneer.mybluemix.net A new form of social media that brings competitive side to posts &amp; An avalanche and weather-tracking site to provide backcountry skiers with better information and promote safety
+A networking app that capitalizes on a dog’s charisma and ability to spark a conversation between strangers, providing resources for professionals to network with their furry companion.  Fetch is built with a front-end in Ember-Cli with a Ruby on Rails API. Oauth2 is implemented with LinkedIn and includes a RESTful Google Maps API.
+lytening.co &amp; challenger-approaches.herokuapp.com   A new form of social media that brings competitive side to posts. &amp; smash bros group locator</p></li>
+<li><p><a href="https://pongtester.herokuapp.com/">https://pongtester.herokuapp.com/</a> A real-time in-class ping-pong scoring system using an Arduino microcontroller! Database-backed!</p></li>
+<li><p><a href="http://socialcomps.herokuapp.com/">http://socialcomps.herokuapp.com/</a> Social Media Brand Comparison Analytics</p></li>
+<li><p><a href="http://parks-pass.herokuapp.com">http://parks-pass.herokuapp.com</a>   National Park exploration and trip planning/logging app</p></li>
+<li><p><a href="https://beer-up.herokuapp.com/">https://beer-up.herokuapp.com/</a>    A site that connects beer lovers/explorers to beers and breweries in other regions. </p></li>
+<li><p><a href="https://pure-wildwood-1690.herokuapp.com/">https://pure-wildwood-1690.herokuapp.com/</a> A social online community for snowboarders to connect and find fellow riders of the same skill level, goal, and/or mountain interest. This application was built on Ruby on Rails, HTML, and CSS Bootstrap while integrating the Twilio API. Members have the capability to send text messages through the app to connect with other members. </p></li>
+<li><p><a href="http://promatch.herokuapp.com/">http://promatch.herokuapp.com/</a>    Online tennis community that matches players based on location and level</p></li>
+<li><p><a href="http://barbets.herokuapp.com/">http://barbets.herokuapp.com/</a> Bar bets is an app that allows users to ‘fantasy gamble’ and earn rewards from local sports bars as well as compete against other players.</p></li>
+<li><p><a href="https://yogurtbrothers.heroku.app.com">https://yogurtbrothers.heroku.app.com</a> website for a Self-Serve Frozen Yogurt Shop in Westminster, CO</p></li>
+<li><p><a href="https://theclimbcenter.herokuapp.com/">https://theclimbcenter.herokuapp.com/</a> Introduction to climbing hold types, positions and movements</p></li>
+<li><p><a href="http://dylan-database.herokuapp.com/">http://dylan-database.herokuapp.com/</a>  Collection of Bob Dylan's albums and lyrics users can annotate</p></li>
+<li><p><a href="http://soundgem.herokuapp.com">http://soundgem.herokuapp.com</a> redisigned soundcloud stream based on your networks favorite tracks</p></li>
+<li><p><a href="https://orbweaver.herokuapp.com">https://orbweaver.herokuapp.com</a>   App built in Ruby on Rails that generates a Spotify playlist containing the top songs of artists with shows in your city in the upcoming week, giving users the opportunity to get familiar and get tickets. Uses both the Bandsintown and Spotify API's.</p></li>
+<li><p><a href="https://najaparser.herokuapp.com">https://najaparser.herokuapp.com</a>  quickly find the data you need in a large JSON payload</p></li>
+</ul><h3>
+<a class="anchor" name="anchor-12"></a>Resources / Libraries You Might Want to Use</h3>
+
+<ul>
+<li><a href="https://phaser.io/">https://phaser.io/</a></li>
+<li><a href="http://d3js.org/">http://d3js.org/</a></li>
+<li><a href="http://html5demos.com/gum-canvas">http://html5demos.com/gum-canvas</a></li>
+<li><a href="http://www.albertosarullo.com/blog/javascript-accelerometer-demo-source">http://www.albertosarullo.com/blog/javascript-accelerometer-demo-source</a></li>
+<li><a href="http://www.smashingmagazine.com/2010/02/01/50-brilliant-css3-javascript-coding-techniques/">http://www.smashingmagazine.com/2010/02/01/50-brilliant-css3-javascript-coding-techniques/</a></li>
+<li><a href="http://www.html5rocks.com/en/tutorials/getusermedia/intro/">http://www.html5rocks.com/en/tutorials/getusermedia/intro/</a></li>
+</ul><h3>
+<a class="anchor" name="anchor-13"></a>4:30 Introduction to Pivotal Tracker</h3>
+
+<h2>
+<a class="anchor" name="anchor-14"></a>Look ahead:</h2>
+
+<p><a href="https://www.youtube.com/watch?v=twav6O53zIQ">https://www.youtube.com/watch?v=twav6O53zIQ</a></p>
+</div>
+</div>

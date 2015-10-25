@@ -1,0 +1,256 @@
+<h2>
+<a class="anchor" name="anchor-0"></a>Locker Problem!</h2>
+
+<h4>
+<a class="anchor" name="anchor-1"></a>CLOSE YOUR LAPTOPS!!!</h4>
+
+<p><img class="img-responsive" src="http://i.giphy.com/dVa7AB52abgFa.gif" alt=""></p>
+
+<h4>
+<a class="anchor" name="anchor-2"></a>NO REALLY, CLOSE YOUR LAPTOPS!!!</h4>
+
+<p><img class="img-responsive" src="http://25.media.tumblr.com/tumblr_mazmooChFr1qedb29o5_r2_500.gif" alt=""></p>
+
+<blockquote>
+<p>Suppose you're in a hallway lined with 100 closed lockers.
+You begin by opening every locker. Then you close every second locker. Then you go to every third locker and open it (if it's closed) or close it (if it's open). Let's call this action toggling a locker. Continue toggling every nth locker on pass number n. After 100 passes, where you toggle only locker #100, how many lockers are open?</p>
+</blockquote>
+
+<h2>
+<a class="anchor" name="anchor-3"></a>Javascript OOP: A Review</h2>
+
+<p>Why is it useful to write code in terms of objects when programming?</p>
+
+<p><strong>Encapsulation</strong>: The practice of packing data and functionality into an object.  The data and functionality have a clearly defined set of interactions.</p>
+
+<p><strong>Abstraction</strong>:  The set of interactions that is available to an object.  Creating an abstraction allows the programmer to think about objects at a higher level, instead of dealing with the details of how the object works.</p>
+
+<h4>
+<a class="anchor" name="anchor-4"></a>Real World Example</h4>
+
+<p>A car is a good example of a real world thing that you interact with.  Most people don't know all the details about how the car works.  Instead, the components that are not necessary for the user to know are <strong>encapsulated</strong> under the hood.  The abstraction in the car can be thought of as the interface that is exposed to you.  The door handles, keys to start the car, gas, and break pedals, a shifter, and a steering wheel are all examples of abstractions that you are provided that give you an easier way of using and controlling the car.</p>
+
+<p><img class="img-responsive" src="http://www.onlinebuff.com/artimages/php46-abs.jpg" alt="Car Encapsulation &amp; Abstraction"></p>
+
+<h4>
+<a class="anchor" name="anchor-5"></a>Exercise</h4>
+
+<p>Work in teams or 2 or 3.  Come up with an interface for a microwave.  Think of the microwave as an object.  What properties will it have?  What functions?  What sort of data do you think will be encapsulated inside the microwave object?</p>
+
+<h3>
+<a class="anchor" name="anchor-6"></a>The Prototype Zoo</h3>
+
+<p>Let's take the zoo exercise from yesterday as an example.  We had one <code>Animal</code> class with a <code>kind</code> property, which specified the type of Animal.  What if we wanted to add a specific property <code>stillHasHorn</code> to all rhinos, or a method <code>rollAroundInMud</code> to all pigs.  With what we did yesterday, we don't have an easy way to give specific properties and methods to different types of Animals.</p>
+
+<p>Instead of one animal class with a <code>kind</code> property, let's refactor into multiple classes, one for each species.  We'll start with <code>Rhino</code>, <code>Pig</code>, and <code>Dog</code> classes.
+ In other words, I want to be able to write something like this:</p>
+
+<pre><code>var pig = new Pig();
+var rhino = new Rhino();
+var dog = new Dog();
+</code></pre>
+
+<p>So for the 3 examples, there are 3 different functions that create 3 different objects.  Each object should be able to do the following things:</p>
+
+<ul>
+<li>name - a nickname like "Rusty", "Iago", or "Hedwig"</li>
+<li>speak() - a method that returns "oink!" for the pigs, "grunt!" for the rhinos, and "woof" for dogs.</li>
+<li>feed() - return <code>"NOM NOM NOM"</code>
+</li>
+</ul><h4>
+<a class="anchor" name="anchor-7"></a>Exercise</h4>
+
+<p>Implement the above 3 objects.  Make sure that speak works correctly for each type of animal.  <strong>HINT</strong> You should be doing a lot of copying and pasting.  You should be asking yourself, there <strong>must</strong> be a better way!</p>
+
+<h2>
+<a class="anchor" name="anchor-8"></a>Inheritance: Keeping The Code DRY</h2>
+
+<p>In our previous exercise, we ended up writing a lot of repeated code.  The <code>feed</code>, <code>wakeUp()</code>, and <code>sleep()</code> methods are all the same. The only method that is different for the 3 classes is the <code>speak()</code> method.  How could we write less code, and do less copying and pasting?</p>
+
+<p><strong>Inheritance</strong>:  Inheritance allows us to write classes that "inherit" functionality from another class.  They way this works in Javascript is slightly different than traditional, or classical inheritance. </p>
+
+<p>Here's an example:</p>
+
+<pre><code>function Cat(age, weight) {
+    this.type = "cat";
+    this.age = age;
+    this.weight = weight;
+}
+
+Cat.prototype.speak = function() {
+    return "meow";
+}
+
+var cat = new Cat(3, 12);
+console.log(cat.speak());  // Makes sense, the cat will say meow
+console.log(cat.toString());  // Prints "[object Object]"
+</code></pre>
+
+<p>The <code>toString()</code> method above isn't all that useful, but it illustrates something important: the <code>toString()</code> method was inherited from the Object type. When we create a new object, we get all of the methods on the Object prototype by default.</p>
+
+<h4>
+<a class="anchor" name="anchor-9"></a>Exercise</h4>
+
+<p>Type <code>Object.prototype</code> and <code>Cat.prototype</code> into the console.  Expand the tabs on the cat prototype.  Look at the __proto__ property.  What do you notice?</p>
+
+<p>So how can we implement our own version of toString that's more useful to us?  We just have to define one:</p>
+
+<pre><code>function Cat(age, weight) {
+    this.type = "cat";
+    this.age = age;
+    this.weight = weight;
+}
+
+Cat.prototype.speak = function() {
+    return "meow";
+}
+
+Cat.prototype.toString = function() {
+    return "[Cat age: " + this.age + ", weight: " + this.weight + "]"
+}
+
+var cat = new Cat(3,12);
+console.log(cat.speak());  // Makes sense, the cat will say meow
+console.log(cat.toString());  // Prints our new toString method
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-10"></a>Call</h2>
+
+<pre><code>var getAge = function() {
+    return this.age;
+}
+
+var john = { name: "john", age: 21 };
+var tom = { name: "tom", age: 31 };
+var bob = { name: "bob", age: 41 };
+getAge.call(tom)
+getAge.call(john)
+getAge.call(bob)
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-11"></a>Inheritance in Javascript</h3>
+
+<p>Let's use inheritance to model <code>Bikes</code> and <code>Cars</code>.  Both will share the base class <code>Vehicle</code>.</p>
+
+<pre><code>                            Vehicle
+                              |
+                     ____________________
+                     |                  |
+                   Bike                Car
+</code></pre>
+
+<p>What properties/methods can we move into a common base class?</p>
+
+<p>Bike:</p>
+
+<ul>
+<li>Capacity</li>
+<li>Wheels</li>
+<li>Color</li>
+<li>Gears</li>
+<li>Pedal()</li>
+</ul><p>Car: </p>
+
+<ul>
+<li>Capacity</li>
+<li>Wheels</li>
+<li>Color</li>
+<li>FuelType</li>
+<li>FillTank()</li>
+</ul><pre><code>function Vehicle(capacity, wheels, color){
+  this.capacity = capacity;
+  this.wheels = wheels;
+  this.color= color;
+}
+
+Vehicle.prototype.rePaint = function(newColor){
+  console.log("This vehicle was painted " + this.color);
+  this.color = newColor;
+  console.log("It is now painted " + this.color);
+}
+
+function Bike(color, gears){
+  //A bike always has 2 wheels and a capacity of 1.
+  Vehicle.call(this, 1, 2, color);
+  this.gears = gears;
+}
+
+Bike.prototype = new Vehicle();
+Bike.prototype.constructor = Bike;
+
+
+Bike.prototype.pedal = function(){
+  console.log("PEDAL PEDAL PEDAL, SO TIRING!")
+}
+
+function Car(capacity, color, fuelType){
+  //A car has a variable capacity, but always 4 wheels.
+  Vehicle.call(this, capacity, 4, color);
+  this.fuelType = fuelType;
+}
+
+Car.prototype = new Vehicle();
+Car.prototype.constructor = Car;
+
+
+Car.prototype.fillTank = function(){
+  console.log("You fill the tank with " + this.fuelType + " gas.")
+}
+
+var b = new Bike("purple", 21);
+b.pedal();
+b.rePaint("black");
+
+
+var c = new Car(5, "Silver", "Premium")
+c.fillTank();
+c.rePaint("Dark Green");
+
+</code></pre>
+
+<h4>
+<a class="anchor" name="anchor-12"></a>Exercise</h4>
+
+<p>Implement the following 4 classes:</p>
+
+<pre><code>                            Animal
+                              |
+                     ____________________
+                     |        |         |
+                   Pig      Rhino      Dog
+</code></pre>
+
+<p>In the diagram, <code>Animal</code> is the base class.  It contains all the methods and properties common between the 3 other classes. <code>Pig</code>, <code>Rhino</code>, and <code>Dog</code> will have their own unique properties and methods.  Here's the functionality I want for each type of animal.  You decide what to extract into the Animal base class.</p>
+
+<p>Pig</p>
+
+<ul>
+<li>name</li>
+<li>rollInMud() - prints: <pig name> rolls in the mud</pig>
+</li>
+<li>speak() - prints: <pig name> says hi</pig>
+</li>
+<li>feed() - prints: "NOM NOM NOM"</li>
+</ul><p>Rhino</p>
+
+<ul>
+<li>name</li>
+<li>stillHasHorn - boolean starts as true</li>
+<li>removeHorn() - sets stillHasHorn to false and prints ":("</li>
+<li>speak() - prints: <rhino name> says hi</rhino>
+</li>
+<li>feed() - prints "NOM NOM NOM"</li>
+</ul><p>Dog</p>
+
+<ul>
+<li>name</li>
+<li>breed</li>
+<li>isPurebred() - returns false if breed is "mutt", true otherwise</li>
+<li>speak() - prints: <dogs name> says hi</dogs>
+</li>
+<li>feed() - prints "NOM NOM NOM"</li>
+</ul><p><strong>Assignment</strong>: <a href="https://github.com/gSchool/shapes_javascript_inheritance">Shapes Exercise</a></p>
+</div>
+</div>

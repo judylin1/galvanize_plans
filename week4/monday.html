@@ -1,0 +1,162 @@
+<h1>
+<a class="anchor" name="anchor-0"></a>Objects and Iteration Assessment</h1>
+
+<p><a href="https://github.com/gSchool/iteration-and-object-assessment">https://github.com/gSchool/iteration-and-object-assessment</a></p>
+
+<h1>
+<a class="anchor" name="anchor-1"></a>Introduction to Node</h1>
+
+<ul>
+<li>What is Event Driven Programming?</li>
+<li>What is an Event Loop?</li>
+<li>What is I/O?</li>
+</ul><h2>
+<a class="anchor" name="anchor-2"></a>Objectives</h2>
+
+<ul>
+<li>Write simple scripts using common File System module methods</li>
+<li>Make HTTP get requests using the HTTP module</li>
+<li>Walk through a simple node HTTP server</li>
+<li><strong>GET COMFORTABLE WITH CALLBACKS EVERYWHERE</strong></li>
+</ul><blockquote>
+<p>Node.js® is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices</p>
+</blockquote>
+
+<p><strong>What is the difference between Javascript and Node?</strong></p>
+
+<blockquote>
+<p>JavaScript is a language. Node.js is not a language or a special dialect of JavaScript - it's just a thing that runs normal JavaScript. All browsers have JavaScript engines that run the JavaScript of web pages. Firefox has an engine called Spidermonkey, Safari has JavaScriptCore, and Chrome has an engine called V8. Node.js is simply the V8 engine bundled with some libraries to do I/O and networking, so that you can use JavaScript outside of the browser, to create shell scripts, backend services or run on hardware (<a href="https://tessel.io/">https://tessel.io/</a>).</p>
+</blockquote>
+
+<h2>
+<a class="anchor" name="anchor-3"></a>Basics</h2>
+
+<p>Type <code>node</code> into your command line and hit enter.  You've entered the node REPL, an environment where you can interactively run JavaScript and see the results.  All of the JS values and many basic methods available in the browser are also available here.  </p>
+
+<p>Try running <code>console.log("HELLO NODE!")</code></p>
+
+<p>The console.log method in Node does something similar to what it does in the browser. It prints out a piece of text. But in Node, the text will go to the process’ standard output stream, rather than to a browser’s JavaScript console.</p>
+
+<h2>
+<a class="anchor" name="anchor-4"></a>ARGV</h2>
+
+<p>When we run scripts in the command line, we often pass in arguments:</p>
+
+<ul>
+<li><code>ls foo/</code></li>
+<li><code>rm -rf /</code></li>
+<li><code>git commit -m "add lesson notes"</code></li>
+</ul><p>We can write our own node scripts that accept and use command line arguments using the <code>process.argv</code> array.  We could run a file called <code>script.js</code> and give it a bunch of arguments:</p>
+
+<p><code>node script.js hello rusty 1 2 3</code></p>
+
+<p>and the <code>process.argv</code> array would look like this:</p>
+
+<pre><code>['node', '/Users/coltsteele/g9/node/script.js', 'hello', 'rusty', '1', '2','3']
+</code></pre>
+
+<p>The first element is always <code>node</code>, and the 2nd element is always the path of the file being run. Provided arguments start at 2nd index (3rd element) of the array.</p>
+
+<h4>
+<a class="anchor" name="anchor-5"></a>Exercise</h4>
+
+<p>Write a Node.js script called <code>sum.js</code> which will <code>console.log</code> the sum of all provided numeric arguments.  When we call <code>node sum.js 4 30 1</code>, it should print out <code>35</code>.</p>
+
+<h2>
+<a class="anchor" name="anchor-6"></a>Modules</h2>
+
+<p>Beyond a few properties/methods like <code>console</code> and <code>process</code>, Node.js puts little functionality in the global scope. If you want to access other built-in functionality, you need to make use of modules.</p>
+
+<p>We use <code>require</code> to load external code; including our own files, downloaded libraries, and built-in modules.  Pathnames are relative to the current module's path.  The <code>.js</code> is optional when using <code>require</code>.</p>
+
+<pre><code>var puppies = require("./puppies");  //puppies.js in current directory
+var dogs = require("../dogs");           //dogs.js in parent directory
+var http = require("http");
+</code></pre>
+
+<p>We can also use <code>require("http");</code> or <code>require("cats");</code> which will either load a built-in module or load a file/library found in <code>node_modules</code>.</p>
+
+<h2>
+<a class="anchor" name="anchor-7"></a>fs Module</h2>
+
+<p>One of the most useful built-in modules is the File System, or "fs" module. It provides a bunch of functions for working with and manipulating files.</p>
+
+<p>We must start by requiring it:</p>
+
+<pre><code>var fs = require("fs")
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-8"></a>Reading Files</h3>
+
+<p>The FS module provides a few different methods for reading data from files.  The first is <code>readFileSync()</code> which takes a single argument, a filename.</p>
+
+<pre><code>var fs = require('fs')
+var contents = fs.readFileSync("dogs.txt")
+</code></pre>
+
+<p>If we <code>console.log</code> contents, you'll notice that it looks weird.  That's because <code>readFileSync</code> returns a buffer instead of a String. Buffer objects are Node's way of efficiently representing arbitrary arrays of data, whether it be ascii, binary or some other format. Buffer objects can be converted to strings by simply calling the <code>toString()</code> method on them.</p>
+
+<pre><code>console.log(contents.toString())
+</code></pre>
+
+<h4>
+<a class="anchor" name="anchor-9"></a>Exercise</h4>
+
+<p>Write code to count the number of new line characters in a given file.  The user should supply the file name as an argument when running the script.  For example:</p>
+
+<p>Given the following <code>test.txt</code> file:</p>
+
+<pre><code>hello
+blah blah
+goodbye
+</code></pre>
+
+<p>Running <code>node newLineCount.js test.txt</code> should print out 2.</p>
+
+<h3>
+<a class="anchor" name="anchor-10"></a>Reading Files Asynchronously</h3>
+
+<p>We can use <code>readFile</code> to read files asynchronously.  Like everything aysnc JS, you will need to make use of a callback function that you pass in as a second argument.</p>
+
+<pre><code>var fs = require('fs')
+fs.readFile("dogs.txt", function(err, data){
+    console.log(data.toString())
+})
+</code></pre>
+
+<p><strong>Idiomatic Node.js callbacks normally follow this pattern: <code>function callback (err, data) { /* ... */ }</code></strong></p>
+
+<p>We can handle potential errors too:</p>
+
+<pre><code>var fs = require('fs')
+fs.readFile("mini_org_charts.txt", function(err, data){
+    if(err) throw err
+    console.log(data.toString());
+});
+</code></pre>
+
+<p>We can also pass another argument to <code>readFile</code> which specifies encoding, so that we don't have to run <code>toString()</code></p>
+
+<pre><code>var fs = require('fs')
+fs.readFile("org_chart.txt", "utf8", function(err, data){
+    if(err) throw err
+    console.log(data);
+});
+</code></pre>
+
+<h4>
+<a class="anchor" name="anchor-11"></a>Exercises</h4>
+
+<ol>
+<li>Rewrite your previous new-line counting code using <code>readFile()</code> instead of <code>readFileSync()</code>
+</li>
+<li><a href="https://github.com/gSchool/node-async-text-parsing-0">File parsing in Node.js</a></li>
+</ol><h3>
+<a class="anchor" name="anchor-12"></a>Stretch</h3>
+
+<ol>
+<li><a href="https://github.com/gSchool/js-node-log-file-parsing">Log parsing in Node.js</a></li>
+</ol>
+</div>
+</div>

@@ -1,0 +1,151 @@
+<h1>
+<a class="anchor" name="anchor-0"></a>Intro to Express.js</h1>
+
+<p>Objectives:</p>
+
+<ul>
+<li>Start a simple express app and review <code>require</code><br>
+</li>
+<li>Apply routing knowledge to serve dynamic content</li>
+<li>Be able to write a simple serve side template using Jade</li>
+</ul><h2>
+<a class="anchor" name="anchor-1"></a>Express</h2>
+
+<h3>
+<a class="anchor" name="anchor-2"></a>What is it?</h3>
+
+<p>Let's go read the <a href="http://expressjs.com/">docs</a></p>
+
+<h3>
+<a class="anchor" name="anchor-3"></a>Getting Started</h3>
+
+<p>Let's read the docs and figure out how to get started with a simple <strong>Express</strong> application.</p>
+
+<h3>
+<a class="anchor" name="anchor-4"></a>Let's keep that server running with nodemon!</h3>
+
+<p>Anywhere in the terminal, run <code>sudo npm install -g nodemon</code> and then type in <code>nodemon app.js</code> instead of <code>node app.js</code> to start your server and keep it alive!</p>
+
+<h2>
+<a class="anchor" name="anchor-5"></a>Routing</h2>
+
+<p>Building an application will require us to have a firm grasp of something we call <strong>routing</strong>.  Each <strong>route</strong> is a combination of a <strong>Request Type</strong> and <strong>Path</strong>.</p>
+
+<p>Let's go back to the <a href="http://expressjs.com/">docs</a> and read some more about adding routes to our app.</p>
+
+<p>Add another a route to our app that sends data using a variable.</p>
+
+<pre><code>var vegetables = [
+        "Carrots",
+        "Cucumber",
+        "Peas"
+         ];
+
+app.get("/", function (req, res) {
+  res.send("Hello World");
+});
+
+app.get("/vegetables", function (req, res) {
+  //send all the veggies
+  res.send(vegetables.join(", "));
+});
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-6"></a>Remember Query Parameters?</h2>
+
+<p>Generally, you don't want to cram everything into a route. Just imagine when there are multiple parameters in route. Maybe we don't care about getting the order of the parameters correct. To solve this problem, we use <strong>query parameters</strong> with each request.</p>
+
+<p>Let's see query params in action. Go to <a href="https://google.com/search?q=puppies">https://google.com/search?q=puppies</a></p>
+
+<ul>
+<li>
+<code>?</code> denotes the beginning of the query parameters</li>
+<li>
+<code>=</code> indicates an assignment; anything to the left is the key, while the right represents the value</li>
+<li>
+<code>&amp;</code> allows for the input of multiple parameters, separating each</li>
+</ul><p>Let's add our first route to practice query params.</p>
+
+<pre><code>app.get("/hi", function (req, res) {
+  var name = req.query.name;
+  res.send("Hello, " + name);
+});
+</code></pre>
+
+<p>Now go to <a href="localhost:3000/hi?name=elie">localhost:3000/hi?name=elie</a>. Note that we define parameters in the url after a <code>?</code>.</p>
+
+<h2>
+<a class="anchor" name="anchor-7"></a>URL Parameters</h2>
+
+<p>What if we want to create an app that can dynamically say hello to anyone?</p>
+
+<ul>
+<li>Using <strong>url parameters</strong> add a dynamic route to the application, indicated by <code>:</code> and the variable name you want to use, we'll use <code>:name</code> for the example below.</li>
+</ul><pre><code>app.get("/hello/:name", function (req, res) {
+  res.send( "Hello, " + req.params.name );
+});
+</code></pre>
+
+<p>Here we are seeing the first introduction to parameters that the application can identify. In the following route <code>:name</code> is consider a route parameter. We can access it using <code>req.params.name</code>.</p>
+
+<h3>
+<a class="anchor" name="anchor-8"></a>Express Calculator Exercise</h3>
+
+<p>Create a simple calculator app using Express.</p>
+
+<ul>
+<li>When a user visits <code>/add/9/3</code>, it should display 12</li>
+<li>When a user visits <code>/sub/9/3</code>, it should display 6</li>
+<li>When a user visits <code>/mult/9/3</code>, it should display 27</li>
+<li>When a user visits <code>/div/9/3</code>, it should display 3</li>
+</ul><p><strong>Bonus</strong> Refactor your code to use only one route rather than 4 separate routes.</p>
+
+<h2>
+<a class="anchor" name="anchor-9"></a>Sending dynamic files</h2>
+
+<p>Sometimes there are static HTML files you want to send as a response. There are ways to send files using Express including <code>res.sendFile</code>, but if we want to send dynamic content, we will need to use something different.</p>
+
+<p>Right now we have been using <code>res.send</code> to display information to our user, but if we want to render a dynamic page we will use <code>res.render</code>. Not only will we use this method, we will render templates using an engine called <code>ejs</code>. This requires us to run <code>npm install --save ejs</code> as well as including the line <code>app.set("view engine", "ejs")</code> inside of our <code>app.js</code></p>
+
+<pre><code>var express = require('express'),
+app = express();
+
+app.set('view engine', 'ejs');
+
+app.get('/', function(req, res){
+  // use res.render
+  res.render('index', {name: "Elie"});
+});
+
+</code></pre>
+
+<p>Now inside of a views folder, we can create an index.ejs file and include</p>
+
+<pre><code>&lt;!DOCTYPE HTML&gt;
+
+&lt;html&gt;
+  &lt;head&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    Hello, &lt;%= name %&gt;!
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-10"></a>Introduction to Jade</h3>
+
+<p><a href="http://jade-lang.com/tutorial/">http://jade-lang.com/tutorial/</a></p>
+
+<h4>
+<a class="anchor" name="anchor-11"></a>Exercise 1: "Song that Doesn't End"</h4>
+
+<p><a href="https://github.com/gSchool/song-that-doesnt-end-js">https://github.com/gSchool/song-that-doesnt-end-js</a></p>
+
+<h4>
+<a class="anchor" name="anchor-12"></a>Exercise 2: Using Objects with templates</h4>
+
+<p><a href="https://github.com/gSchool/objects-to-tables-js">https://github.com/gSchool/objects-to-tables-js</a></p>
+</div>
+</div>

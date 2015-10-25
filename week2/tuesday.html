@@ -1,0 +1,135 @@
+<h2>
+<a class="anchor" name="anchor-0"></a>9am - Standup</h2>
+
+<h2>
+<a class="anchor" name="anchor-1"></a>9:05am - This week</h2>
+
+<ul>
+<li>JavaScript Arrays, Loops, Objects</li>
+<li>Intro to Algorithms</li>
+<li>Terminal styling / oh-my-zsh</li>
+<li>Git Branching</li>
+</ul><h2>
+<a class="anchor" name="anchor-2"></a>~9:15am - QA &amp; Consolidation</h2>
+
+<p>Focus on quality, resolve all issues.</p>
+
+<ul>
+<li>Validate <em>after</em> deploying</li>
+<li>lowercase underscored names</li>
+<li>lowercase dasherized ids and classnames</li>
+<li>
+<code>&lt;p&gt;</code> instead of <code>&lt;br&gt;</code> - why?</li>
+<li>Tip Calculator QA - even numbers, odd numbers, negative numbers etc...</li>
+<li>
+<code>addEventListener</code> instead of <code>onclick</code>
+</li>
+<li>Eloquent answers - the probability that you will arrive at the author's answer on your own is very, <em>very</em> low...</li>
+</ul><h2>
+<a class="anchor" name="anchor-3"></a>Consolidate</h2>
+
+<p>Finish everything that's incomplete (check the pull requests for comments if you haven't already):</p>
+
+<ul>
+<li>PreWork (deployed to S3, with the link in your top-level README.md)</li>
+<li>HTML Forms (deployed to S3, validated, with the link in the README.md file)</li>
+<li>Tip Calculator (deployed to S3, validated and fully functional, with the link in the README.md file)</li>
+<li>AirFare Calculator (deployed to S3, validated, fully functional, with the link in your Project)</li>
+<li>
+<a href="https://github.com/gSchool/eloquent-javascript-solutions">Pull Request</a> for <a href="http://eloquentjavascript.net/02_program_structure.html">"Looping a triangle" and "Chess board" exercises</a>
+</li>
+</ul><p><strong>Stretch #1</strong></p>
+
+<ul>
+<li>Go to Tip Calculator</li>
+<li>Create a separate branch</li>
+<li>Refactor the entire page so it contains no markup in the body at all (other than the script tags)</li>
+<li>Use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement">createElement</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild">appendChild</a> and the like.</li>
+</ul><p><strong>Stretch #2</strong></p>
+
+<ul>
+<li>Rewrite both Eloquent JavaScript solutions without using a loop.  Consider <code>forEach</code>, <code>map</code> and <code>reduce</code>.</li>
+</ul><h2>
+<a class="anchor" name="anchor-4"></a>JavaScript Basics: Conditionals and Loops</h2>
+
+<h3>
+<a class="anchor" name="anchor-5"></a>Objectives</h3>
+
+<p>By the end of this lesson you should be able to:</p>
+
+<ul>
+<li>Write a syntactically correct <code>for</code> loop</li>
+<li>Write a syntactically correct <code>while</code> loop</li>
+<li>Define what each part of a <code>for</code> loop does</li>
+<li>Be able to <strong>apply</strong> conditionals and loops to problem solving.</li>
+</ul><h3>
+<a class="anchor" name="anchor-6"></a>Excercise</h3>
+
+<p>Print the numbers 1 to 10 and also the number 10 to 1, side by side. The output should look like this:</p>
+
+<pre><code>1  10
+2  9
+3  8
+4  7
+5  6
+6  5
+7  4
+8  3
+9  2
+10  1
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-7"></a>Analyze this code (variable tables)</h2>
+
+<pre><code class="js">var i = 0;
+var output = "";
+while(i &lt; 4) {
+  var tmp;
+  if(i % 2 === 0) {
+    tmp = "zebra";
+  } else {
+    tmp = "stripe";
+  }
+  output += tmp;
+  if (i &lt; 3){
+      output += "-";
+  }
+  i++;
+}
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-8"></a>For Loops</h3>
+
+<p>For loops are a concise way to express how a loop should be initialized, how long a loop should run, and what action should be taken at the end of each iteration. The general syntax is below:</p>
+
+<pre><code>for (initialization; conditional; final expression) {
+    // Some code to run.
+}
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-9"></a>Accumulator Pattern</h3>
+
+<ul>
+<li>The accumulator pattern with <code>while</code>
+</li>
+<li>The accumulator pattern with <code>for</code>
+</li>
+</ul><h3>
+<a class="anchor" name="anchor-10"></a>More Practice with <code>for</code> and <code>while</code>
+</h3>
+
+<p>Fork this <a href="https://github.com/gSchool/js-iteration">repo</a> and work through the exercises.</p>
+
+<h3>
+<a class="anchor" name="anchor-11"></a>Resources</h3>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for</a></li>
+</ul>
+</div>
+</div>

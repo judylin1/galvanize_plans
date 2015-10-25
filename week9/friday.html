@@ -1,0 +1,157 @@
+<h1>
+<a class="anchor" name="anchor-0"></a>Mongoose</h1>
+
+<blockquote>
+<p>The best thing about Mongoose for MongoDB is the fact that you can have built-in automatic validation of the data which you are inserting/updating. Mongoose also gives you the ability to pre-define events to happen, say, before a document gets saved. This is very powerful because it consolidates the code you would have to write, and it places that code where it should be next to the document logic and not in the application logic.</p>
+
+<p>Knowing a defined schema beforehand can be handy, because then you can make assumptions that you otherwise might not be able to. For example, if I have a Post schema, then I can assume that it has a body field and use it as a String without checking its existence.</p>
+</blockquote>
+
+<p><a href="http://mongoosejs.com/docs/">Mongoose Docs</a></p>
+
+<h2>
+<a class="anchor" name="anchor-1"></a>Mongoose on its own(without Express)</h2>
+
+<h3>
+<a class="anchor" name="anchor-2"></a>Setup</h3>
+
+<pre><code>var mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/dog_park");
+mongoose.set('debug', true);
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-3"></a>Defining Schema and Model</h3>
+
+<pre><code>var dogSchema = new mongoose.Schema({
+    name: String,
+    breed: String,
+    age: Number
+});
+
+var Dog =  mongoose.model("Dog", dogSchema);
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-4"></a>Do something with the model!</h3>
+
+<p>To create a new dog:</p>
+
+<pre><code>Dog.create(
+    {
+        name: "Momo",
+        breed: "Miniature American Eskimo",
+        age: 1
+    },
+    function(err, dog){
+        if(err){
+            console.log(err)
+        } else {
+            console.log(dog)
+        }
+    }
+)
+
+</code></pre>
+
+<p>Notice the <code>function(err, data){}</code> callback pattern where <code>err</code> comes first.  It's used all over the place in node packages and libraries.</p>
+
+<h4>
+<a class="anchor" name="anchor-5"></a>Exercise - Create 3 dogs:</h4>
+
+<ul>
+<li>Charlie - 2 year old Lab</li>
+<li>Wyatt - 11 Year old Lab</li>
+<li>Sitka - 2 year old Malamute</li>
+</ul><p><strong>To retrieve records:</strong></p>
+
+<pre><code>//Find all Dogs
+Dog.find({})
+//Find all 1 year old dogs(puppies)
+Dog.find( { age: 1})
+</code></pre>
+
+<p>Test that Charlie, Wyatt, and Sitka are in fact in your database.</p>
+
+<h4>
+<a class="anchor" name="anchor-6"></a>Exercise</h4>
+
+<ul>
+<li>Create 8 dogs names "Jack", "Chloe", "Lucy", "Cooper", "Riley", "Bear", "Harley", and "Lola".  They are all Bernese Mountain Dogs.  Each dog should have a random age between 1 and 20(which, let's be honest, is a little optimistic for such a large dog breed...)</li>
+<li>Find all the dogs, store them in an array called <code>dogPack</code>, and then loop through <code>dogPack</code> and make each dog bark by printing out "(insertDogNamehere) says Woof!"</li>
+<li>Find all labs in your db and console.log() each one</li>
+</ul><p><strong>To Update a Record:</strong></p>
+
+<pre><code>Dog.update({name: "Momo"}, {age:100}, function(err, dog){
+    if(err){
+        console.log(err)
+    } else {
+        console.log(dog)
+    }
+})
+</code></pre>
+
+<p>What are the 3 arguments that <code>update</code> takes?</p>
+
+<p><strong>To Delete a Record:</strong></p>
+
+<pre><code>Dog.remove({name: "Rusty"}, function(err, dog){
+    if(err){
+        console.log(err)
+    } else {
+        console.log(dog)
+    }
+})
+</code></pre>
+
+<h4>
+<a class="anchor" name="anchor-7"></a>Exercise</h4>
+
+<ul>
+<li>Your dog had a new litter of 4 puppies! You decided on names already: <code>["Tater", "Garfunkel", "Luna", "Remus"]</code>  Loop through this array of names and create a new Dog for each one.  Set age to 0 and breed to Mutt</li>
+<li>OH NO!!! Garfunkel's mom accidentally stepped on him and crushed him :(  Remove him from the database</li>
+<li>It's the new litter's first birthday!  Find all dogs that are 0 years old and update them to be 1!</li>
+</ul><hr><h2>
+<a class="anchor" name="anchor-8"></a>Mongoose with Express</h2>
+
+<p>So now that we've seen how to use Mongoose on its own, it's your turn to incorporate it into an Express app! I'm giving you a starter express app that has full CRUD implemented for books, using an array to store data. Your goal is to keep the functionality exactly the same: just basic CRUD for books, except you're going to add in some Mongoose code to persist the data.</p>
+
+<p>To get started:</p>
+
+<ul>
+<li>Clone <a href="https://github.com/gSchool/express_library_app">this repo</a>
+</li>
+<li>Checkout the <code>mongoose_starter</code> branch</li>
+<li>Install dependencies</li>
+<li>Install Mongoose</li>
+<li>Hint: <code>db = require('./models')</code>
+</li>
+</ul><h3>
+<a class="anchor" name="anchor-9"></a>The only mongoose methods you will need:</h3>
+
+<ul>
+<li><code>find</code></li>
+<li><code>create</code></li>
+<li><code>findById</code></li>
+<li><code>findByIdAndUpdate</code></li>
+<li><code>findByIdAndRemove</code></li>
+</ul><h2>
+<a class="anchor" name="anchor-10"></a>1:30pm OOP Check for Understanding and Weekly Feedback</h2>
+
+<h3>
+<a class="anchor" name="anchor-11"></a>Writeups:</h3>
+
+<p>Constructor Functions CFU<br>
+this CFU</p>
+
+<p><a href="https://docs.google.com/a/galvanize.com/forms/d/1HDt6IUG_4rebjudFPSJRaj0LFtCm805pFAAsaIPMNh4/viewform">Weekly Feedback Form</a></p>
+
+<h2>
+<a class="anchor" name="anchor-12"></a>3-5pm Wrestle With It! Mongoose with Express practice:</h2>
+
+<p>Doing it all from scratch
+<a href="https://github.com/gSchool/mongoose_countries_app">https://github.com/gSchool/mongoose_countries_app</a></p>
+
+<p>When you finish the countries app, CRUD two more apps with models of your choice.</p>
+</div>
+</div>

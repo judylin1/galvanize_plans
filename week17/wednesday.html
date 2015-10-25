@@ -1,0 +1,165 @@
+<h2>
+<a class="anchor" name="anchor-0"></a>9:00 Algorithms with Nmuta</h2>
+
+<h2>
+<a class="anchor" name="anchor-1"></a>10:30 Rails CRUD From Scratch with Martha</h2>
+
+<p><strong>Prerequisite</strong> - You must already have Rails installed on your machine. </p>
+
+<ul>
+<li>Routes</li>
+<li>Controllers</li>
+<li>Models</li>
+<li>Views</li>
+<li>Migrations</li>
+<li>erb</li>
+</ul><h2>
+<a class="anchor" name="anchor-2"></a>Objectives</h2>
+
+<ul>
+<li>Get a high level introduction to MVC in Rails</li>
+<li>Be able to CRUD in Rails without using scaffolds</li>
+<li>Be able to hand roll a Rails route</li>
+<li>Be able to generate routes using <code>resources</code>
+</li>
+<li>Be able to write out all 7 RESTful routes</li>
+<li>Be able to create a model</li>
+<li>Be able to create a controller</li>
+<li>Be able to write <code>erb</code> (embedded ruby)</li>
+<li>Be able to use the Rails <code>form_for</code> to create a form</li>
+<li>Be able to write and execute a migration</li>
+<li>Be able to use postgreSQL with Rails</li>
+</ul><h1>
+<a class="anchor" name="anchor-3"></a>Intro to Rails</h1>
+
+<p>What this lesson covers:</p>
+
+<ul>
+<li>MVC Basics</li>
+<li>Rails File Structure</li>
+<li>Creating a Super Simple Rails CRUD Project</li>
+</ul><h2>
+<a class="anchor" name="anchor-4"></a>Part 1 - What is Rails?</h2>
+
+<blockquote>
+<p>Rails is a web application development framework written in the Ruby language. It is designed to make programming web applications easier by making assumptions about what every developer needs to get started. It allows you to write less code while accomplishing more than many other languages and frameworks.</p>
+</blockquote>
+
+<p><strong>Rails is opinionated software.</strong> It makes the assumption that there is the "best" way to do things, and it's designed to encourage that way - and in some cases to discourage alternatives.  To use Rails, you must learn "The Rails Way".</p>
+
+<p>The Rails philosophy includes two major guiding principles:</p>
+
+<ol>
+<li>
+<strong>Don't Repeat Yourself</strong>: DRY is a principle of software development which states that "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system." By not writing the same information over and over again, our code is more maintainable, more extensible, and less buggy.</li>
+<li>
+<strong>Convention Over Configuration</strong>: Rails has opinions about the best way to do many things in a web application, and defaults to this set of conventions, rather than require that you specify every minutiae through endless configuration files.  You must name things in a particular way.  You must put files in a particular place, etc.</li>
+</ol><p><strong>Notable companies that use Rails</strong></p>
+
+<ul>
+<li>Airbnb</li>
+<li>Github</li>
+<li>GoPro</li>
+<li>Groupon</li>
+<li>Hulu</li>
+<li>LivingSocial</li>
+<li>New Relic</li>
+<li>One Kings Lane</li>
+<li>Sound Cloud</li>
+<li>Square</li>
+<li>Task Rabbit</li>
+<li>Twilio</li>
+<li>Twitter</li>
+<li>Yammer</li>
+<li>Zendesk</li>
+</ul><h4>
+<a class="anchor" name="anchor-5"></a>MVC Revisited</h4>
+
+<p>You're all already familiar with MVC, though we haven't always been using the exact language that Rails uses.</p>
+
+<ul>
+<li>
+<strong>Model</strong>
+
+<ul>
+<li>Contains data for the application (often linked to a database)</li>
+<li>Contains all business logic</li>
+</ul>
+</li>
+<li>
+<strong>View</strong>
+
+<ul>
+<li>Generates the user interface which presents data to the user</li>
+<li>Passive, i.e. doesn’t do any processing</li>
+</ul>
+</li>
+<li>
+<strong>Controller</strong>
+
+<ul>
+<li>Receive events from the outside world (usually through views)</li>
+<li>Interact with the model</li>
+<li>Displays the appropriate view to the user</li>
+</ul>
+</li>
+</ul><p><img class="img-responsive" src="http://1.bp.blogspot.com/-GMvBz2taYH8/UL4v-8e51HI/AAAAAAAAAFk/RnpdpsNOhjY/s1600/mvc_role_diagram.png%20=600x300" alt=""></p>
+
+<h4>
+<a class="anchor" name="anchor-6"></a>All Those Files and Folders...</h4>
+
+<p>Rails gives us tons of files and directories. Figuring out where to put things is one of the biggest challenges in learning Rails. You will become comfortable with them over time with practice. Today we're going to focus on a few key areas,
+mostly inside of the <code>app</code> directory where all of our models, views, and controllers are kept.</p>
+
+<ul>
+<li>
+<strong>app/controllers</strong>: The controllers subdirectory is where Rails looks to find controller classes.</li>
+<li>
+<strong>app/models</strong>: Holds the models: classes that model and wrap the data stored in our database.</li>
+<li>
+<strong>app/view</strong>: The views directory contains our templates.</li>
+<li>
+<strong>app/view/layouts</strong>: Holds the layout file(s)</li>
+<li>
+<strong>config:</strong> This directory contains your application's configuration code for things like your database, your routes, deployment environments, and more. Today we'll focus on <code>routes.rb</code>
+</li>
+<li>
+<strong>db:</strong> Holds migrations and the schema for your application.</li>
+<li>
+<strong>public:</strong> Like the public directory for a web server, this directory contains static assets like JavaScript files (public/javascripts), images and logos (public/images), stylesheets (public/stylesheets), and HTML files (public).</li>
+<li>
+<strong>Gemfile:</strong> A list of your application's dependences.  Like the <code>package.json</code> file in a node app. Bundler uses the Gemfile to know what gems to install.</li>
+</ul><h3>
+<a class="anchor" name="anchor-7"></a>Ok, let's get started!</h3>
+
+<p>If JavaScript errors are gibberish spouting angry trolls, then Ruby on Rails (RoR) errors are a sweet grandma who wants to make sure you've had enough to eat and the temperature is just right, and she wants to personally escort you to school to make sure you get there safely.</p>
+
+<p>Remember <strong>Convention Over Configuration</strong> from a few paragraphs up? By just naming files and directories the "Rails way", Rails will pretty much tell you what it's missing along the way. Like runway lights at an airport, or bumper bowling for beginners. If you follow your errors, a sort of "error driven development", Rails will keep you on task as you learn your way around.  </p>
+
+<p>And if that's not cutting it, the Rails docs are ridiculous. In a good way.</p>
+
+<p>The important bits of code from today:</p>
+
+<ul>
+<li><code>rails new &lt;appname&gt;</code></li>
+<li>
+<code>bundle install</code> or (<code>bundle</code>)</li>
+<li>
+<code>rails server</code> or (<code>rails s</code>)</li>
+<li><code>get 'welcome' =&gt; 'welcome#index'</code></li>
+<li><code>rake routes</code></li>
+<li><code>rails g migration do_some_thing</code></li>
+<li><code>&lt;%= form_for @something do |f| %&gt;</code></li>
+<li><code>&lt;%= link_to "View Projects", projects_path %&gt;</code></li>
+<li>
+<code>rails console</code> or (<code>rails c</code>)</li>
+</ul><h2>
+<a class="anchor" name="anchor-8"></a>Afternoon</h2>
+
+<p>Afternoons are when instructors are most available for one on ones and able to help with individual projects and learning experiences. Students who stick around during this time and take advantage of the free form and flexibility are able to explore and troubleshoot a plethora of development challenges. If you have not been taking advantage of this time, I would like to encourage you to do so and get the most out of the remaining 7 weeks of class.</p>
+
+<p><a href="https://docs.google.com/spreadsheets/d/1M__a67vNjmsi8jS3cJLEBcmX_pDxNs6itjX2WQObYMY/edit#gid=699350586">One on One Sign Up</a></p>
+
+<p>That is all :D</p>
+</div>
+</div>

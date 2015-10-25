@@ -1,0 +1,291 @@
+<h2>
+<a class="anchor" name="anchor-0"></a>Introduction to JavaScript</h2>
+
+<p>JavaScript was introduced in 1995 as a way to add programs to web pages in the Netscape Navigator browser. It was created in just 10 days by <a href="http://en.wikipedia.org/wiki/Brendan_Eich">Brendan Eich</a></p>
+
+<p>It is important to note that JavaScript has almost nothing to do with the programming language named Java. The similar name was a marketing move intended to ride the coattails of the Java programming language, which at the time was being heavily marketed and was gaining popularity.</p>
+
+<h3>
+<a class="anchor" name="anchor-1"></a>Why Should YOU Care About Javascript</h3>
+
+<p>The flexbility of JS leaves space for a lot of techniques that are impossible in more rigid languages.</p>
+
+<p>Javascript allows us to make our pages interactive, dynamic and awesome.   Here are some very common uses for JS on the front-end:</p>
+
+<ul>
+<li><a href="http://codepen.io/markmurray/pen/efcjp">Simple Navigation Menu</a></li>
+<li><a href="http://tympanus.net/Development/FullscreenOverlayStyles/">Overlay Effects</a></li>
+<li><a href="http://tympanus.net/Tutorials/AnimatedBorderMenus/index.html">Animated Border Menus</a></li>
+</ul><p>Some other more complex uses for JS:</p>
+
+<ul>
+<li><a href="http://lights.helloenjoy.com/">Interactive Music Video</a></li>
+<li><a href="http://www.patatap.com/">Patatap</a></li>
+<li><a href="http://www.jamwithchrome.com/">Jam With Chrome</a></li>
+<li><a href="http://www.chromeexperiments.com/detail/just-a-reflektor/?f=">Arcade Fire Reflektor Music Video</a></li>
+</ul><h2>
+<a class="anchor" name="anchor-2"></a>Javascript Console</h2>
+
+<p>Allows you to easily interface with your app to run JS commands and display log messages for help with debugging
+- Shortcut to open JS console &amp; bring focus to console <code>Cmd + Opt + J</code></p>
+
+<p>We can use the console to play around with JavaScript and interact with web pages.</p>
+
+<p>Go to <a href="http://www.google.com">Google</a> and try pasting the following code into your console:</p>
+
+<pre><code>var logo = document.getElementById('hplogo');
+logo.onclick = function () { this.src = "http://cdn.howtogeek.com/wp-content/uploads/2010/10/DANCING_BABY.gif"}
+</code></pre>
+
+<p>And then try this:</p>
+
+<pre><code>function makeWider() {
+  var logo = document.getElementById('hplogo');
+  logo.width += 5;
+}
+
+setInterval(makeWider, 41.67)
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-3"></a>JavaScript - Values, Variables, Types</h2>
+
+<h4>
+<a class="anchor" name="anchor-4"></a>GOALS:</h4>
+
+<p>To be able to:</p>
+
+<ul>
+<li>Describe what a variable is</li>
+<li>Declare a variable in JavaScript</li>
+<li>Assign a value to a variable in JavaScript</li>
+<li>Reassign a value to a variable</li>
+<li>Describe in precise terms what's happening with variable assignment</li>
+<li>Be able to evaluate the below expression
+<code>
+!(typeof(9) === typeof(9.5) &amp;&amp; (99 == "99" || !true))
+</code>
+</li>
+</ul><h3>
+<a class="anchor" name="anchor-5"></a>Numbers</h3>
+
+<p>Numbers are one of the <em>types</em> of <strong>values</strong> we want to be able to interact and play with in JS.</p>
+
+<ul>
+<li>Integers</li>
+</ul><pre><code>   ..., -1,0, 2, 3, 4, 5, ...
+</code></pre>
+
+<ul>
+<li>Floats (or Decimal numbers)</li>
+</ul><pre><code>   2.718, 3.14, .5, .25, etc
+</code></pre>
+
+<p>In JS, these are the same <strong>type</strong> of object, which it calls <em>Numbers</em>, so if you know floats and integers do not go looking for them.</p>
+
+<h2>
+<a class="anchor" name="anchor-6"></a>Strings</h2>
+
+<p>Strings are collections of letters and symbols known as <strong>Characters</strong>, and we use them to deal with words and text in Javascript. Strings are just another type of <strong>value</strong> in Javascript.</p>
+
+<pre><code>"John", "Jane"
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-7"></a>Boolean</h2>
+
+<p>A boolean represents logical values <strong>true</strong> or <strong>false</strong></p>
+
+<pre><code>var catsAreGreat = true;
+var dogsRule = false;
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-8"></a>Values and Expressions</h2>
+
+<p>Values are the simplest components in JavaScript. <code>1</code> is a value, <code>true</code> is a value, <code>"hello"</code> is a value, <code>function() {}</code> is a value.</p>
+
+<p>Types of values like <code>Number</code> or <code>String</code> are not very useful without being able to form <strong>Expressions</strong> or <strong>Combinations</strong>.</p>
+
+<p>Try your favorite number operators</p>
+
+<pre><code>  1 + 1
+  =&gt; 2
+  2 - 1
+  =&gt; 1
+</code></pre>
+
+<p>You can also create expressions with strings using addition</p>
+
+<pre><code>  "Hello, " + "world!"
+  =&gt; "Hello, world!"
+</code></pre>
+
+<p>This is called <strong>String Concatentation.</strong></p>
+
+<h2>
+<a class="anchor" name="anchor-9"></a>Variables</h2>
+
+<p>Having written some expressions it becomes evident we will want to store these values.</p>
+
+<p>To store values we use  <strong>variables</strong>.</p>
+
+<ul>
+<li>What is a variable?</li>
+<li>What is the syntax for creating a variable?</li>
+</ul><pre><code>var myNumber = 1;
+// or also
+
+var myString = "Greetings y'all!"
+</code></pre>
+
+<p>Variables can also store the result of any "expression".
+For example:</p>
+
+<pre><code>var x = 2 + 2;
+</code></pre>
+
+<p>or</p>
+
+<pre><code>var name = 'Momo';
+var greeting = 'Hello' + name;
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-10"></a>undefined &amp; null</h2>
+
+<p><strong>undefined</strong>: Represents a value that hasn't been defined</p>
+
+<pre><code>var notDefinedYet;
+</code></pre>
+
+<p>A variable that has not been assigned a value is of type undefined. A method or statement also returns undefined if the variable that is being evaluated does not have an assigned value. A function returns undefined if a value was not returned.</p>
+
+<p><strong>null</strong>: Represents an explicitly empty value</p>
+
+<pre><code>var dogsRule = null;
+</code></pre>
+
+<h1>
+<a class="anchor" name="anchor-11"></a>The DOM</h1>
+
+<p><strong>The Document Object Model (DOM) is the interface between your HTML, CSS, and Javascript</strong></p>
+
+<p>It provides a structural representation of the document, enabling the developer to modify its content and visual presentation. Essentially, it connects web pages to scripts or programming languages.</p>
+
+<p><img class="img-responsive" src="https://draftin.com/images/14599?token=MKs0x4-N3P6EUP7Ck44SRCKzaacjb2tbd6A9yYyaCIKn3jesWPnyy7KHsiFGiMJBtlBiECEnWmxmdBhHBcJfM5M" alt="DOM TREE"></p>
+
+<p>The DOM specifies how browsers should create a model of an HTML page and how JS can access and update the contents of a web page while it is in the browser window.</p>
+
+<ul>
+<li><p>The model (the DOM tree) is made of objects.
+Each object represents a different part of the page loaded in the browser window.</p></li>
+<li><p>These objects are often referred to as <strong>nodes</strong>. Each node is an object with methods and properties. (EXAMPLE: <strong>getElementById, innerHTML)</strong></p></li>
+</ul><h3>
+<a class="anchor" name="anchor-12"></a>Accessing and updating the DOM tree involves 2 steps:</h3>
+
+<ol>
+<li>Locate the node that represents the element you want to work with.</li>
+<li>Use its text content, child elements, and attributes to achieve the desired results</li>
+</ol><p>HINT: <strong>Use a variable to store a reference to the object in the DOM tree (the location of a node).</strong></p>
+
+<h2>
+<a class="anchor" name="anchor-13"></a>Functions</h2>
+
+<p><strong>A function is a JavaScript procedure—a set of statements that performs a task or calculates a value.</strong></p>
+
+<p>A JavaScript function is written like this:</p>
+
+<pre><code>function myFunc() {
+  return "hello";
+};
+</code></pre>
+
+<p>You can also write an "anonymous" function (meaning, it has no name) like this:</p>
+
+<pre><code>function() {
+  return "Iago is learning JavaScript!";
+}
+</code></pre>
+
+<p><strong>3 important things to remember about functions:</strong></p>
+
+<ol>
+<li><p>If you want the function to return a value, you have to use the <strong>return</strong> keyword.</p></li>
+<li><p>A function doesn't run (or execute) until it is "called". To call a function you write the name of the function followed by opening and closing parenthesis and a semicolon</p></li>
+<li><p>To call the above function would look like this:</p></li>
+</ol><pre><code>myFunc();
+</code></pre>
+
+<p>It might be helpful to think of a function like a recipe.
+A recipe consists of a list of ingredients as well as step by step instructions that tell a person what to do with the ingredients. Like, to bake a cake, for example, the recipe might look like this:</p>
+
+<ul>
+<li>Mix one cup of flour with 6 eggs</li>
+<li>Add one cup of milk</li>
+<li>Stir until there are no clumps</li>
+<li>Pre-heat oven to 425 degrees</li>
+<li>Poor batter into pan</li>
+</ul><p>Well, a function is similar in that it contains information about how to execute a specific task. Functions are broken down into step by step instructions that a computer will execute. Functions use things like variables to store values that can be used, along with expressions and statements, to achieve a result.</p>
+
+<p><strong>But there is one important thing to remember here. Unlike humans, computers don't actually know anything unless we tell them.</strong></p>
+
+<p>Take the above example. The first line in our recipe says "Mix one cup of flour with six eggs". A human is able to figure out where the milk and eggs are on their own. Heck, a human even knows what milk and eggs are without being told in the recipe.</p>
+
+<p>If we were to tell a computer to bake a cake, we would have to add a lot more steps to our recipe. For example, we would have to first define milk and eggs. We would even have to tell the computer to walk to the refrigerator, open the door, pull out the milk etc ...</p>
+
+<p><strong>Let's take 5 minutes to list the steps we would have to tell a computer to make a peanut butter and jelly sandwich.</strong></p>
+
+<h3>
+<a class="anchor" name="anchor-14"></a>Event Handlers</h3>
+
+<pre><code>var thing = document.getElementById("thing");
+
+thing.addEventListener("click", function() {
+  alert("You just clicked the thing!");
+};
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-15"></a>Practice manipulating the DOM</h3>
+
+<p>Fork and clone this <a href="https://github.com/gSchool/DOM_Intro_Exercise">repo</a></p>
+
+<p>In the Chrome JS console practice selecting different elements on the page and doing something with it.</p>
+
+<p>For example:</p>
+
+<ol>
+<li>When you click the word "milk", have an alert pop up that says "Milk"<br>
+</li>
+<li>When you click the word "wine" make the letters turn red</li>
+<li>Can you think of any other fun events to make happen?</li>
+</ol><h3>
+<a class="anchor" name="anchor-16"></a>Tip Calculator</h3>
+
+<p>Fork and clone this <a href="https://github.com/gSchool/tip-calculator-html-js">repo</a>.</p>
+
+<p>Complete the stories one at a time.</p>
+
+<p>Resources:</p>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Function">https://developer.mozilla.org/en-US/docs/Glossary/Function</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener</a></li>
+</ul><hr><ul>
+<li><a href="http://aws.amazon.com/cli/">http://aws.amazon.com/cli/</a></li>
+<li><a href="http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html">http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html</a></li>
+</ul><pre><code>sudo easy_install pip
+sudo pip install awscli
+aws configure
+</code></pre>
+
+<p>Use <code>us-west-2</code> as the default region.  Use <code>json</code> as the default output.</p>
+
+<pre><code>aws s3 ls
+</code></pre>
+
+<pre><code>aws s3 website s3://my-bucket/ --index-document index.html --error-document error.html
+</code></pre>
+</div>
+</div>

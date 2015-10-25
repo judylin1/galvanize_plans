@@ -1,0 +1,104 @@
+<h2>
+<a class="anchor" name="anchor-0"></a>Using Forms with Jade</h2>
+
+<p><a href="http://naltatis.github.io/jade-syntax-docs/">Jade Syntax Documentation</a></p>
+
+<h2>
+<a class="anchor" name="anchor-1"></a>Using <code>body-parser</code> to capture values</h2>
+
+<p>We've been using <code>req.query</code> and <code>req.params</code> to capture values sent by <code>GET</code>
+requests.</p>
+
+<p>Now it's time to explore capturing values using the <code>POST</code> request.</p>
+
+<p>Let's use our first middleware. It's called <code>body-parser</code> and it will parse the body of a request being sent to us by the client when a form is submitted.</p>
+
+<p>Since we're using the express generator, <code>body-parser</code> has already been added
+to our dependences in <code>package.json</code>. But if we were hand rolling our express app, know that you would have to manually add <code>body-parser</code> by running <code>npm install --save body-parser</code>.</p>
+
+<p>You can use <code>body-parser</code> like this:</p>
+
+<pre><code>router.post('/', function(req, res, next) {
+  var name = req.body.name;
+  res.send("Hello " + name);
+});
+
+</code></pre>
+
+<h2>
+<a class="anchor" name="anchor-2"></a>Using <code>module.exports</code> in Node.js</h2>
+
+<p>Remember Tip Calculator and Air Travel Calculator? We used <code>&lt;script&gt;</code> tags to tell our app about javascripts that we wanted to use. </p>
+
+<p>These <code>script</code> tags allowed us to access functions that not only transformed the DOM for us but also allowed us execute logic that transformed input given to us by the user. The <code>script</code> tags allowed us to share important information throughout our app.</p>
+
+<p>We can do a similar thing in Express by using <code>module.exports</code> and <code>require</code>.</p>
+
+<p><code>module.exports</code> and <code>require</code> allow us to share functions, libraries, data etc. throughout our application. </p>
+
+<p>Take 5 minutes to read through the article below and get a little more familiar with how this works.</p>
+
+<p><a href="http://www.sitepoint.com/understanding-module-exports-exports-node-js/">Understanding module.exports</a></p>
+
+<h3>
+<a class="anchor" name="anchor-3"></a>Exercise 1:  'Hipstafy'</h3>
+
+<p><a href="https://github.com/gSchool/module-exports-body-parser-practice">module-exports-body-parser-practice</a></p>
+
+<h4>
+<a class="anchor" name="anchor-4"></a>Route / Function / Send to Client</h4>
+
+<p><img class="img-responsive" src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=Y2xpZW50IC0-IGluZGV4LmpzOiBHRVQKCgAHCAAQC2FkZToAEAlhZGUgLT4gTGF5b3V0ABQIAAMLAEYNAEEOAG4GOiAyMDAgT0sgSFRNTCBSRVNQT05TRQoKAH4UUE9TAIEED0ZVTkNUSU9OOgoKAAMIADk5CgoKCgoKCg&amp;s=rose" alt=""></p>
+
+<h4>
+<a class="anchor" name="anchor-5"></a>Route / Function / Data / Function / Send to Client</h4>
+
+<p><img class="img-responsive" src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=Y2xpZW50IC0-IGluZGV4LmpzOiBHRVQKCgAHCAAQC2FkZToAEAlhZGUgLT4gTGF5b3V0ABQIAAMLAEYNAEEOAG4GOiAyMDAgT0sgSFRNTCBSRVNQT05TRQoKAH4UUE9TAIEED0ZVTkNUSU9OOgoKAAMIIC0-IERBVEE6CgpEQVRBAAsbAGM1CgoKCgoKCg&amp;s=rose" alt=""></p>
+
+<h4>
+<a class="anchor" name="anchor-6"></a>Route / Function / Data / Function / Get Template / Render to Client</h4>
+
+<p><img class="img-responsive" src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=Y2xpZW50IC0-IGluZGV4LmpzOiBHRVQKAAYIAA8LYWRlOiAAEQhhZGUgLT4gTGF5b3V0OgoAAgYAOg0ANg0AYQY6IDIwMCBPSyBIVE1MIFJFU1BPTlNFCgBwFFBPUwB3DkZVTkNUSU9OOgoAAgggLT4gREFUQToKREFUQQAKGgB8FgCBSgsAgRFDAIFEDSAKCgo&amp;s=rose" alt=""></p>
+
+<h3>
+<a class="anchor" name="anchor-7"></a>Exercise 2: Air Travel Calculator</h3>
+
+<p>Apply what you've learned by grabbing (and slightly modifying) the logic you wrote for air-travel-calculator and using it to make the same app but with Express, Node.js, and Jade.</p>
+
+<h2>
+<a class="anchor" name="anchor-8"></a># STRETCH</h2>
+
+<h4>
+<a class="anchor" name="anchor-9"></a>Express Library!</h4>
+
+<h4>
+<a class="anchor" name="anchor-10"></a>Task</h4>
+
+<p>Build an Express application from scratch (don't use the generator) that allows users to create books. You should use an array as your way of storing book objects and each book should have a title, author and year. Figure out how to add css styling to your app.</p>
+
+<h4>
+<a class="anchor" name="anchor-11"></a>Getting Started</h4>
+
+<pre><code>$ mkdir express-library
+$ mkdir views
+$ touch app.js
+$ npm init
+$ npm install --save express
+$ npm install --save body-parser
+$ npm install --save jade
+$ touch .gitignore
+$ echo node_modules &gt; .gitignore
+$ git init
+$ git add -A
+$ git commit -m "Initial commit"
+</code></pre>
+
+<h3>
+<a class="anchor" name="anchor-12"></a>More</h3>
+
+<ul>
+<li>if you examine all of your views and find that you are repeating yourself, research what partials are in Express and how to include them - use partials to refactor and clean up your code.</li>
+<li>add an additional route that allows the user to sort all of the books alphabetically</li>
+</ul>
+</div>
+</div>
